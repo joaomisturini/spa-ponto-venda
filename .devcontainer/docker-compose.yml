@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  node:
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    stdin_open: false
+    tty: false

@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  node:
+    command: yarn start
+    image: node:14.4
+    build:
+      context: .
+      dockerfile: ./docker/node/Dockerfile
+    ports:
+      - 3000:3000
+    stdin_open: true
+    tty: true
+    user: node
+    volumes:
+      - ./:/home/node/app
+    working_dir: /home/node/app

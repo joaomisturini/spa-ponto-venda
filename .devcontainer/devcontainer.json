@@ -1,0 +1,10 @@
+{
+	"name": "arquitet",
+	"dockerComposeFile": [
+		"../docker-compose.yml",
+		"docker-compose.yml"
+	],
+	"service": "node",
+	"workspaceFolder": "/home/node/app",
+	"postCreateCommand": "./docker/node/postCreate.sh"
+}
