@@ -1,5 +1,5 @@
 {
-	"name": "arquitet",
+	"name": "pontovenda",
 	"dockerComposeFile": [
 		"../docker-compose.yml",
 		"docker-compose.yml"
