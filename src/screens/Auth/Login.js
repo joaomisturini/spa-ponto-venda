@@ -21,7 +21,7 @@ class ScreensAuthLogin extends React.Component {
         }
 
         return (
-            <div className="col-md-4">
+            <div className="col-md-8 col-lg-6 col-xl-4">
                 <div className="card">
                     <div className="card-body">
                         <h2 className="card-title text-center">Ponto de venda</h2>
