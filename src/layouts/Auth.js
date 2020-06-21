@@ -2,6 +2,7 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import Navbar from '../components/UI/Navbar'
 import AuthService from '../services/AuthService'
+import NotificationWrapper from '../components/Notification/Wrapper'
 
 class LayoutsAuth extends React.Component {
     constructor(props) {
@@ -24,6 +25,7 @@ class LayoutsAuth extends React.Component {
             <>
                 <header><Navbar onLogout={ this.handleLogout } /></header>
                 <div className="container-fluid">{ this.props.children }</div>
+                <NotificationWrapper />
             </>
         )
     }
