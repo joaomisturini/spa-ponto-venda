@@ -3,3 +3,10 @@
     bottom: 0;
     top: 0;
 }
+.toastr {
+    position: absolute;
+    cursor: pointer;
+    width: 300px;
+    right: 15px;
+    top: 10px;
+}
