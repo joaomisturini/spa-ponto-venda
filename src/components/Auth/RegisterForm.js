@@ -7,9 +7,9 @@ class RegisterForm extends React.Component {
         super(props)
 
         this.state = {
-            name: '',
-            email: '',
             password: '',
+            email: '',
+            name: '',
         }
     }
 

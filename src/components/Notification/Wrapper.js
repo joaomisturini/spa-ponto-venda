@@ -12,24 +12,22 @@ class NotificationWrapper extends React.Component {
     }
 
     componentDidMount = () => {
-        this.busToken = Bus.subscribe('notification', event => this.setState(oldState => ({
-            notifications: oldState.notifications.concat({
-                key: Date.now(), ...event
-            })
+        this.busToken = Bus.subscribe('notification', event => this.setState(({ notifications }) => ({
+            notifications: notifications.concat({ key: Date.now(), ...event }),
         })))
     }
 
     componentWillUnmount = () => {
-        Bus.unsubscribe(this.busToken);
+        Bus.unsubscribe(this.busToken)
     }
 
-    handleClick = key => this.setState(oldState => ({
-        notifications: oldState.notifications.filter(notification => notification.key !== key),
+    handleClick = key => this.setState(({ notifications }) => ({
+        notifications: notifications.filter(notification => notification.key !== key),
     }))
 
     render = () => (
         <>{ this.state.notifications.map(({ key, ...notification }) => (
-            <NotificationItem key={ key } { ...notification } onClick={ event => this.handleClick(key) } />
+            <NotificationItem key={ key } { ...notification } onClick={ () => this.handleClick(key) } />
         )) }</>
     )
 }
