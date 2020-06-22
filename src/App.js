@@ -5,6 +5,8 @@ import { BrowserRouter, Switch } from 'react-router-dom'
 import ScreensAuthRegister from './screens/Auth/Register'
 import { WithAuth, WithGuest } from './layouts/Resolvers'
 import { AuthRoute, GuestRoute } from './components/Routes'
+
+import ScreensProviderIndex from './screens/Provider/Index'
 import ScreensDashboard from './screens/Dashboard/Dashboard'
 
 const App = () => (
@@ -13,7 +15,7 @@ const App = () => (
             <GuestRoute path="/login" render={ props => WithGuest(ScreensAuthLogin, props) } />
             <GuestRoute path="/cadastrar" render={ props => WithGuest(ScreensAuthRegister, props) } />
 
-            <AuthRoute path="/fornecedores" render={ props => WithAuth(ScreensDashboard, props) } />
+            <AuthRoute path="/fornecedores" render={ props => WithAuth(ScreensProviderIndex, props) } />
             <AuthRoute path="/compras" render={ props => WithAuth(ScreensDashboard, props) } />
             <AuthRoute path="/abrir-caixa" render={ props => WithAuth(ScreensDashboard, props) } />
             <AuthRoute path="/consultar-saldo" render={ props => WithAuth(ScreensDashboard, props) } />
