@@ -7,12 +7,17 @@ class ScreensAuthLogin extends React.Component {
     constructor(props) {
         super(props)
 
-        this.state = { logged: false }
+        this.state = {
+            pending: false,
+            logged: false,
+        }
     }
 
     handleLogin = async data => {
+        this.setState({ pending: true })
+
         const logged = await AuthService.login(data)
-        this.setState({ logged })
+        this.setState({ logged, pending: false })
     }
 
     render = () => {
@@ -26,7 +31,7 @@ class ScreensAuthLogin extends React.Component {
                     <div className="card-body">
                         <h2 className="card-title text-center">Ponto de venda</h2>
                         <p className="card-text text-muted text-center">Faça login para continuar</p>
-                        <LoginForm onSubmit={ this.handleLogin } />
+                        <LoginForm pending={ this.state.pending } onSubmit={ this.handleLogin } />
                     </div>
                     <div className="card-footer text-right">
                         <Link to="/cadastrar" className="card-link">Cadastrar-se</Link>

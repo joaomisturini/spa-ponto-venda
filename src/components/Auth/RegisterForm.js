@@ -1,5 +1,6 @@
 import React from 'react'
 import Input from '../UI/Input'
+import SubmitButton from '../UI/SubmitButton'
 
 class RegisterForm extends React.Component {
     constructor(props) {
@@ -34,7 +35,7 @@ class RegisterForm extends React.Component {
             <Input type="text" value={ this.state.name } onChange={ this.handleName } maxLength="255" required label="Nome" autoFocus />
             <Input type="email" value={ this.state.email } onChange={ this.handleEmail } maxLength="255" required label="E-mail" />
             <Input type="password" value={ this.state.password } onChange={ this.handlePassword } maxLength="255" required label="Senha" />
-            <button type="submit" className="btn btn-outline-success btn-block">Fazer cadastro</button>
+            <SubmitButton pending={ this.props.pending }>Fazer cadastro</SubmitButton>
         </form>
     )
 }

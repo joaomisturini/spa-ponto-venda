@@ -1,13 +1,14 @@
 import React from 'react'
 import Input from '../UI/Input'
+import SubmitButton from '../UI/SubmitButton'
 
 class LoginForm extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            email: '',
             password: '',
+            email: '',
         }
     }
 
@@ -28,7 +29,7 @@ class LoginForm extends React.Component {
         <form onSubmit={ this.handleSubmit }>
             <Input type="email" value={ this.state.email } onChange={ this.handleEmail } maxLength="255" required placeholder="E-mail" autoFocus />
             <Input type="password" value={ this.state.password } onChange={ this.handlePassword } maxLength="255" required placeholder="Senha" />
-            <button type="submit" className="btn btn-outline-success btn-block">Fazer login</button>
+            <SubmitButton pending={ this.props.pending }>Fazer login</SubmitButton>
         </form>
     )
 }

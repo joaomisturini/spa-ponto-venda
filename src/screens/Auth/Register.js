@@ -7,12 +7,17 @@ class ScreensAuthRegister extends React.Component {
     constructor(props) {
         super(props)
 
-        this.state = { registered: false }
+        this.state = {
+            registered: false,
+            pending: false,
+        }
     }
 
     handleRegister = async body => {
+        this.setState({ pending: true })
+
         const registered = await AuthService.register(body)
-        this.setState({ registered })
+        this.setState({ registered, pending: false })
     }
 
     render = () => {
@@ -26,7 +31,7 @@ class ScreensAuthRegister extends React.Component {
                     <div className="card-body">
                         <h2 className="card-title text-center">Ponto de venda</h2>
                         <p className="card-text text-muted text-center">Faça seu cadastro</p>
-                        <RegisterForm onSubmit={ this.handleRegister } />
+                        <RegisterForm pending={ this.state.pending } onSubmit={ this.handleRegister } />
                     </div>
                     <div className="card-footer text-right">
                         <Link to="/login" className="card-link">Fazer login</Link>
