@@ -24,7 +24,7 @@ class LayoutsAuth extends React.Component {
         return (
             <>
                 <header><Navbar onLogout={ this.handleLogout } /></header>
-                <div className="container-fluid">{ this.props.children }</div>
+                <div className="container-fluid pt-4">{ this.props.children }</div>
                 <NotificationWrapper />
             </>
         )
