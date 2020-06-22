@@ -14,4 +14,5 @@ services:
     user: node
     volumes:
       - ./:/home/node/app
+      - ~/.ssh:/.ssh-localhost:ro
     working_dir: /home/node/app
