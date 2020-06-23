@@ -13,10 +13,10 @@ class ScreensAuthLogin extends React.Component {
         }
     }
 
-    handleLogin = async data => {
+    handleLogin = async body => {
         this.setState({ pending: true })
 
-        const logged = await AuthService.login(data)
+        const logged = await AuthService.login(body)
         this.setState({ logged, pending: false })
     }
 
