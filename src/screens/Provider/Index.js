@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import ProviderService from '../../services/ProviderService'
 
 class ScreensProviderIndex extends React.Component {
     constructor(props) {
@@ -8,18 +9,27 @@ class ScreensProviderIndex extends React.Component {
         this.state = { providers: [] }
     }
 
-    componentDidMount = () => {
+    componentDidMount = async () => {
+        const providers = await ProviderService.list()
+
+        this.setState({ providers })
+    }
+
+    handleDelete = async id => {
 
     }
 
     render = () => {
         const htmlProviders = this.state.providers.map(provider => (
-            <tr>
-                <td>{ provider.RazaoSocial }</td>
-                <td>{ provider.CNPJ }</td>
-                <td>{ provider.Telefone }</td>
-                <td>{ provider.Email }</td>
-                <td></td>
+            <tr key={ provider.id }>
+                <td>{ provider.name }</td>
+                <td>{ provider.cnpj }</td>
+                <td>{ provider.phone }</td>
+                <td>{ provider.email }</td>
+                <td className="text-right">
+                    <Link to={ `/fornecedores/editar/${ provider.id }` } className="btn btn-sm btn-outline-secondary mr-2">Editar</Link>
+                    <button type="button" onClick={ event => this.handleDelete(event, provider.id) } className="btn btn-sm btn-outline-danger">Excluir</button>
+                </td>
             </tr>
         ))
 
@@ -41,7 +51,7 @@ class ScreensProviderIndex extends React.Component {
                                 <th>CNPJ</th>
                                 <th>Telefone</th>
                                 <th>E-mail</th>
-                                <th>Ações</th>
+                                <th className="text-right">Ações</th>
                             </tr>
                         </thead>
                         <tbody>{ htmlProviders }</tbody>
