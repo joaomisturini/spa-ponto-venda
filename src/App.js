@@ -1,11 +1,12 @@
 import './App.css'
 import React from 'react'
-import ScreensAuthLogin from './screens/Auth/Login'
 import { BrowserRouter, Switch } from 'react-router-dom'
-import ScreensAuthRegister from './screens/Auth/Register'
 import { WithAuth, WithGuest } from './layouts/Resolvers'
 import { AuthRoute, GuestRoute } from './components/Routes'
 
+import ScreensAuthLogin from './screens/Auth/Login'
+import ScreensAuthRegister from './screens/Auth/Register'
+import ScreensProviderEdit from './screens/Provider/Edit'
 import ScreensProviderIndex from './screens/Provider/Index'
 import ScreensDashboard from './screens/Dashboard/Dashboard'
 
@@ -15,6 +16,8 @@ const App = () => (
             <GuestRoute path="/login" render={ props => WithGuest(ScreensAuthLogin, props) } />
             <GuestRoute path="/cadastrar" render={ props => WithGuest(ScreensAuthRegister, props) } />
 
+            <AuthRoute path="/fornecedores/editar/:id" render={ props => WithAuth(ScreensProviderEdit, props) } />
+            <AuthRoute path="/fornecedores/criar" render={ props => WithAuth(ScreensProviderEdit, props) } />
             <AuthRoute path="/fornecedores" render={ props => WithAuth(ScreensProviderIndex, props) } />
             <AuthRoute path="/compras" render={ props => WithAuth(ScreensDashboard, props) } />
             <AuthRoute path="/abrir-caixa" render={ props => WithAuth(ScreensDashboard, props) } />
