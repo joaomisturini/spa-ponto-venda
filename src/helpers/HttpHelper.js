@@ -7,6 +7,10 @@ const HttpHelper = (() => {
 
     const post = async (uri, body) => await _fetch('POST', uri, body)
 
+    const put = async (uri, body) => await _fetch('PUT', uri, body)
+
+    const del = async uri => await _fetch('DELETE', uri)
+
     const _fetch = async (method, uri, body = null) => {
         const jsonBody = body !== null ? JSON.stringify(body) : null
 
@@ -33,7 +37,7 @@ const HttpHelper = (() => {
         return await response.text()
     }
 
-    return { get, post }
+    return { get, post, put, del }
 })()
 
 export default HttpHelper
