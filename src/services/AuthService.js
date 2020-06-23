@@ -1,6 +1,6 @@
-import Bus from '../helpers/BusHelper'
 import Http from '../helpers/HttpHelper'
 import Storage from '../helpers/StorageHelper'
+import { handleError } from '../helpers/MethodsHelper'
 
 const AuthService = (() => {
     const _uris = {
@@ -8,7 +8,7 @@ const AuthService = (() => {
         login: '/Usuarios/Login',
     }
 
-    const login = async body => await _handleError(async () => {
+    const login = async body => await handleError(async () => {
         const data = await Http.post(_uris.login, {
             Senha: body.password,
             Email: body.email,
@@ -24,7 +24,7 @@ const AuthService = (() => {
         return true
     }
 
-    const register = async body => await _handleError(async () => {
+    const register = async body => await handleError(async () => {
         await Http.post(_uris.register, {
             Senha: body.password,
             Email: body.email,
@@ -33,20 +33,6 @@ const AuthService = (() => {
 
         return true
     })
-
-    const _handleError = async callback => {
-        try {
-            return await callback()
-        } catch (error) {
-            Bus.publish(`notification`, {
-                message: error.message,
-                title: `Atenção!`,
-                type: `danger`,
-            });
-
-            return false
-        }
-    }
 
     return { login, logout, register }
 })()
