@@ -3,14 +3,10 @@ import Input from '../UI/Input'
 import SubmitButton from '../UI/SubmitButton'
 
 class RegisterForm extends React.Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            password: '',
-            email: '',
-            name: '',
-        }
+    state = {
+        password: '',
+        email: '',
+        name: '',
     }
 
     handleName = event => {

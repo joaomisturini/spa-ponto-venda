@@ -4,13 +4,9 @@ import EditForm from '../../components/Provider/EditForm'
 import ProviderService from '../../services/ProviderService'
 
 class ScreensProviderEdit extends React.Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            pending: false,
-            saved: false,
-        }
+    state = {
+        pending: false,
+        saved: false,
     }
 
     handleLoad = async () => {

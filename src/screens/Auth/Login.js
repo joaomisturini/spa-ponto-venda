@@ -4,13 +4,9 @@ import AuthService from '../../services/AuthService'
 import LoginForm from '../../components/Auth/LoginForm'
 
 class ScreensAuthLogin extends React.Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            pending: false,
-            logged: false,
-        }
+    state = {
+        pending: false,
+        logged: false,
     }
 
     handleLogin = async body => {

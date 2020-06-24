@@ -3,15 +3,11 @@ import Input from '../UI/Input'
 import SubmitButton from '../UI/SubmitButton'
 
 class EditForm extends React.Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            phone: '',
-            email: '',
-            name: '',
-            cnpj: '',
-        }
+    state = {
+        phone: '',
+        email: '',
+        name: '',
+        cnpj: '',
     }
 
     componentDidMount = async () => {

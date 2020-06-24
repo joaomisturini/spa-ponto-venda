@@ -3,13 +3,9 @@ import NotificationItem from './Item'
 import Bus from '../../helpers/BusHelper'
 
 class NotificationWrapper extends React.Component {
-    constructor(props) {
-        super(props)
+    state = { notifications: [] }
 
-        this.state = { notifications: [] }
-
-        this.busToken = null
-    }
+    busToken = null
 
     componentDidMount = () => {
         this.busToken = Bus.subscribe('notification', event => this.setState(({ notifications }) => ({

@@ -2,11 +2,7 @@ import React from 'react'
 import IndexLine from './IndexLine'
 
 class IndexTable extends React.Component {
-    constructor(props) {
-        super(props)
-
-        this.state = { providers: [] }
-    }
+    state = { providers: [] }
 
     componentDidMount = async () => {
         const providers = await this.props.onLoad()

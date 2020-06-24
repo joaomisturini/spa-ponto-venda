@@ -5,11 +5,7 @@ import AuthService from '../services/AuthService'
 import NotificationWrapper from '../components/Notification/Wrapper'
 
 class LayoutsAuth extends React.Component {
-    constructor(props) {
-        super(props)
-
-        this.state = { logged: true }
-    }
+    state = { logged: true }
 
     handleLogout = async () => {
         const isOut = await AuthService.logout()

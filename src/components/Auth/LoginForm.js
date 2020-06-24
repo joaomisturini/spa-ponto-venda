@@ -3,13 +3,9 @@ import Input from '../UI/Input'
 import SubmitButton from '../UI/SubmitButton'
 
 class LoginForm extends React.Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            password: '',
-            email: '',
-        }
+    state = {
+        password: '',
+        email: '',
     }
 
     handleEmail = event => {

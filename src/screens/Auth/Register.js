@@ -4,13 +4,9 @@ import AuthService from '../../services/AuthService'
 import RegisterForm from '../../components/Auth/RegisterForm'
 
 class ScreensAuthRegister extends React.Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            registered: false,
-            pending: false,
-        }
+    state = {
+        registered: false,
+        pending: false,
     }
 
     handleRegister = async body => {
