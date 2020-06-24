@@ -4,6 +4,7 @@ import { handleError } from '../helpers/MethodsHelper'
 const ProviderService = (() => {
     const _uris = {
         list: '/Fornecedores/Listar',
+        destroy: '/Fornecedores/',
         update: '/Fornecedores/',
         create: '/Fornecedores',
         show: '/Fornecedores/',
@@ -56,7 +57,13 @@ const ProviderService = (() => {
         return true
     }, false)
 
-    return { list, create, show, update }
+    const destroy = async id => await handleError(async () => {
+        await Http.del(_uris.destroy + id)
+
+        return true
+    }, false)
+
+    return { list, create, show, update, destroy }
 })()
 
 export default ProviderService
