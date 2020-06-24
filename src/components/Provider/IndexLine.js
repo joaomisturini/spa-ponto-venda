@@ -15,15 +15,15 @@ class IndexLine extends React.Component {
     }
 
     render = () => {
-        const { id, name, cnpj, phone, email } = this.props.provider
+        const { id, ...provider } = this.props.provider
         const editUri = `/fornecedores/editar/${ id }`
 
         return (
             <tr>
-                <td>{ name }</td>
-                <td>{ cnpj }</td>
-                <td>{ phone }</td>
-                <td>{ email }</td>
+                <td>{ provider.name }</td>
+                <td>{ provider.cnpj }</td>
+                <td>{ provider.phone }</td>
+                <td>{ provider.email }</td>
                 <td className="text-right">
                     <Link to={ editUri } className="btn btn-sm btn-outline-secondary mr-2">Editar</Link>
                     <DestroyButton pending={ this.state.pending } onClick={ () => this.handleDestroy(id) }>
