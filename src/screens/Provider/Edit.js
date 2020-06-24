@@ -16,11 +16,7 @@ class ScreensProviderEdit extends React.Component {
     handleLoad = async () => {
         const { id } = this.props.match.params
 
-        if (id === undefined) {
-            return {}
-        }
-
-        return await ProviderService.show(id)
+        return id === undefined ? await ProviderService.show(id) : {}
     }
 
     handleSave = async body => {

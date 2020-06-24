@@ -43,7 +43,7 @@ const ProviderService = (() => {
             cnpj: provider.CNPJ,
             id: provider.Id,
         }
-    }, null)
+    }, {})
 
     const update = async (id, body) => await handleError(async () => {
         await Http.put(_uris.update + id, {
