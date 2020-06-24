@@ -4,9 +4,9 @@ import { handleError } from '../helpers/MethodsHelper'
 const ProviderService = (() => {
     const _uris = {
         list: '/Fornecedores/Listar',
+        update: '/Fornecedores/',
         create: '/Fornecedores',
         show: '/Fornecedores/',
-        update: '/Fornecedores/',
     }
 
     const list = async () => await handleError(async () => {
@@ -19,18 +19,18 @@ const ProviderService = (() => {
             cnpj: provider.CNPJ,
             id: provider.Id,
         }))
-    })
+    }, [])
 
     const create = async body => await handleError(async () => {
         await Http.post(_uris.create, {
             RazaoSocial: body.name,
-            CNPJ: body.cnpj,
             Telefone: body.phone,
             Email: body.email,
+            CNPJ: body.cnpj,
         })
 
         return true
-    })
+    }, false)
 
     const show = async id => await handleError(async () => {
         const data = await Http.get(_uris.show + id)
@@ -43,18 +43,18 @@ const ProviderService = (() => {
             cnpj: provider.CNPJ,
             id: provider.Id,
         }
-    })
+    }, null)
 
     const update = async (id, body) => await handleError(async () => {
         await Http.put(_uris.update + id, {
             RazaoSocial: body.name,
-            CNPJ: body.cnpj,
             Telefone: body.phone,
             Email: body.email,
+            CNPJ: body.cnpj,
         })
 
         return true
-    })
+    }, false)
 
     return { list, create, show, update }
 })()

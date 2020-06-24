@@ -17,10 +17,11 @@ const AuthService = (() => {
         Storage.add('token', data)
 
         return true
-    })
+    }, false)
 
     const logout = async () => {
         Storage.remove('token')
+
         return true
     }
 
@@ -32,7 +33,7 @@ const AuthService = (() => {
         })
 
         return true
-    })
+    }, false)
 
     return { login, logout, register }
 })()

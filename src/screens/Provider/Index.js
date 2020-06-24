@@ -11,12 +11,7 @@ class ScreensProviderIndex extends React.Component {
 
     componentDidMount = async () => {
         const providers = await ProviderService.list()
-
         this.setState({ providers })
-    }
-
-    handleDelete = async id => {
-
     }
 
     render = () => {

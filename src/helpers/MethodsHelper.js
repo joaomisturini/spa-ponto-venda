@@ -1,6 +1,6 @@
 import Bus from './BusHelper'
 
-export const handleError = async callback => {
+export const handleError = async (callback, errorData) => {
     try {
         return await callback()
     } catch (error) {
@@ -10,6 +10,6 @@ export const handleError = async callback => {
             type: `danger`,
         });
 
-        return false
+        return errorData
     }
 }
