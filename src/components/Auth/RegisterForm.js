@@ -4,6 +4,7 @@ import SubmitButton from '../UI/SubmitButton'
 
 class RegisterForm extends React.Component {
     state = {
+        password_confirmation: '',
         password: '',
         email: '',
         name: '',
@@ -41,6 +42,14 @@ class RegisterForm extends React.Component {
                 maxLength="120"
                 minLength="6"
                 label="Senha"
+                required
+            />
+            <Input type="password"
+                onChange={ event => this.handleChange('password_confirmation', event) }
+                value={ this.state.password_confirmation }
+                label="Confirme a senha"
+                maxLength="120"
+                minLength="6"
                 required
             />
             <SubmitButton pending={ this.props.pending }>Fazer cadastro</SubmitButton>
