@@ -24,6 +24,9 @@ class Navbar extends React.Component {
                         <Link to="/fornecedores" className="nav-link">Fornecedores</Link>
                     </li>
                     <li className="nav-item">
+                        <Link to="/produtos" className="nav-link">Produtos</Link>
+                    </li>
+                    <li className="nav-item">
                         <Link to="/compras" className="nav-link">Compras</Link>
                     </li>
                     <li className="nav-item">

@@ -5,10 +5,13 @@ import { WithAuth, WithGuest } from './layouts/Resolvers'
 import { AuthRoute, GuestRoute } from './components/Routes'
 
 import ScreensAuthLogin from './screens/Auth/Login'
+import ScreensProductEdit from './screens/Product/Edit'
 import ScreensAuthRegister from './screens/Auth/Register'
+import ScreensProductIndex from './screens/Product/Index'
 import ScreensProviderEdit from './screens/Provider/Edit'
 import ScreensProviderIndex from './screens/Provider/Index'
 import ScreensDashboard from './screens/Dashboard/Dashboard'
+
 
 const App = () => (
     <BrowserRouter>
@@ -19,6 +22,9 @@ const App = () => (
             <AuthRoute path="/fornecedores/editar/:id" render={ props => WithAuth(ScreensProviderEdit, props) } />
             <AuthRoute path="/fornecedores/criar" render={ props => WithAuth(ScreensProviderEdit, props) } />
             <AuthRoute path="/fornecedores" render={ props => WithAuth(ScreensProviderIndex, props) } />
+            <AuthRoute path="/produtos/editar/:id" render={ props => WithAuth(ScreensProductEdit, props) } />
+            <AuthRoute path="/produtos/criar" render={ props => WithAuth(ScreensProductEdit, props) } />
+            <AuthRoute path="/produtos" render={ props => WithAuth(ScreensProductIndex, props) } />
             <AuthRoute path="/compras" render={ props => WithAuth(ScreensDashboard, props) } />
             <AuthRoute path="/abrir-caixa" render={ props => WithAuth(ScreensDashboard, props) } />
             <AuthRoute path="/consultar-saldo" render={ props => WithAuth(ScreensDashboard, props) } />
