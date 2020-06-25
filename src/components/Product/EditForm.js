@@ -95,6 +95,7 @@ class EditForm extends React.Component {
                         onChange={ event => this.handleChange('balance', event) }
                         value={ this.state.balance }
                         label="Saldo"
+                        step=".01"
                         required
                         min="0"
                     />

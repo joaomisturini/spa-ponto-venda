@@ -22,9 +22,9 @@ class IndexLine extends React.Component {
             <tr>
                 <td>{ product.name }</td>
                 <td>{ product.ean }</td>
-                <td>{ product.price }</td>
-                <td>{ product.ipi }</td>
-                <td>{ product.icms }</td>
+                <td>R$ { product.price }</td>
+                <td>R$ { product.ipi }</td>
+                <td>R$ { product.icms }</td>
                 <td>{ product.balance }</td>
                 <td className="text-right">
                     <Link to={ editUri } className="btn btn-sm btn-outline-secondary mr-2">Editar</Link>
