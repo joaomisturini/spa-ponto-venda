@@ -1,5 +1,6 @@
 import React from 'react'
 import Input from '../UI/Input'
+import InputMask from '../UI/InputMask'
 import SubmitButton from '../UI/SubmitButton'
 
 class EditForm extends React.Component {
@@ -44,10 +45,10 @@ class EditForm extends React.Component {
                     />
                 </div>
                 <div className="col-sm">
-                    <Input type="text"
+                    <InputMask type="text"
                         onChange={ event => this.handleChange('cnpj', event) }
                         value={ this.state.cnpj }
-                        maxLength="14"
+                        mask="99.999.999/9999-99"
                         label="CNPJ"
                         required
                     />
@@ -55,11 +56,11 @@ class EditForm extends React.Component {
             </div>
             <div className="form-row">
                 <div className="col-sm">
-                    <Input type="text"
+                    <InputMask type="text"
                         onChange={ event => this.handleChange('phone', event) }
                         value={ this.state.phone }
+                        mask="(99) 9999-9999"
                         label="Telefone"
-                        maxLength="20"
                         required
                     />
                 </div>
