@@ -73,7 +73,7 @@ class EditForm extends React.Component {
                     />
                 </div>
             </div>
-            <SubmitButton pending={ this.props.pending }>Fazer cadastro</SubmitButton>
+            <SubmitButton pending={ this.props.pending }>Salvar fornecedor</SubmitButton>
         </form>
     )
 }
