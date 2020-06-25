@@ -11,30 +11,18 @@ class EditForm extends React.Component {
     }
 
     componentDidMount = async () => {
-        const { name, cnpj, phone, email } = await this.props.onLoad()
+        const provider = await this.props.onLoad()
 
         this.setState({
-            phone: phone || '',
-            email: email || '',
-            name: name || '',
-            cnpj: cnpj || '',
+            phone: provider.phone || '',
+            email: provider.email || '',
+            name: provider.name || '',
+            cnpj: provider.cnpj || '',
         })
     }
 
-    handleName = event => {
-        this.setState({ name: event.target.value })
-    }
-
-    handleCnpj = event => {
-        this.setState({ cnpj: event.target.value })
-    }
-
-    handlePhone = event => {
-        this.setState({ phone: event.target.value })
-    }
-
-    handleEmail = event => {
-        this.setState({ email: event.target.value })
+    handleChange = (field, event) => {
+        this.setState({ [field]: event.target.value })
     }
 
     handleSubmit = event => {
@@ -46,18 +34,43 @@ class EditForm extends React.Component {
         <form onSubmit={ this.handleSubmit }>
             <div className="form-row">
                 <div className="col-sm">
-                    <Input type="text" value={ this.state.name } onChange={ this.handleName } maxLength="255" required label="Razão social" autoFocus />
+                    <Input type="text"
+                        onChange={ event => this.handleChange('name', event) }
+                        value={ this.state.name }
+                        label="Razão social"
+                        maxLength="255"
+                        autoFocus
+                        required
+                    />
                 </div>
                 <div className="col-sm">
-                    <Input type="text" value={ this.state.cnpj } onChange={ this.handleCnpj } maxLength="18" required label="CNPJ" />
+                    <Input type="text"
+                        onChange={ event => this.handleChange('cnpj', event) }
+                        value={ this.state.cnpj }
+                        maxLength="18"
+                        label="CNPJ"
+                        required
+                    />
                 </div>
             </div>
             <div className="form-row">
                 <div className="col-sm">
-                    <Input type="text" value={ this.state.phone } onChange={ this.handlePhone } maxLength="15" required label="Telefone" />
+                    <Input type="text"
+                        onChange={ event => this.handleChange('phone', event) }
+                        value={ this.state.phone }
+                        label="Telefone"
+                        maxLength="15"
+                        required
+                    />
                 </div>
                 <div className="col-sm">
-                    <Input type="email" value={ this.state.email } onChange={ this.handleEmail } maxLength="255" required label="E-mail" />
+                    <Input type="email"
+                        onChange={ event => this.handleChange('email', event) }
+                        value={ this.state.email }
+                        maxLength="255"
+                        label="E-mail"
+                        required
+                    />
                 </div>
             </div>
             <SubmitButton pending={ this.props.pending }>Fazer cadastro</SubmitButton>
