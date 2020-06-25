@@ -8,12 +8,8 @@ class LoginForm extends React.Component {
         email: '',
     }
 
-    handleEmail = event => {
-        this.setState({ email: event.target.value })
-    }
-
-    handlePassword = event => {
-        this.setState({ password: event.target.value })
+    handleChange = (field, event) => {
+        this.setState({ [field]: event.target.value })
     }
 
     handleSubmit = event => {
@@ -23,8 +19,21 @@ class LoginForm extends React.Component {
 
     render = () => (
         <form onSubmit={ this.handleSubmit }>
-            <Input type="email" value={ this.state.email } onChange={ this.handleEmail } maxLength="255" required placeholder="E-mail" autoFocus />
-            <Input type="password" value={ this.state.password } onChange={ this.handlePassword } maxLength="255" required placeholder="Senha" />
+            <Input type="email"
+                onChange={ event => this.handleChange('email', event) }
+                value={ this.state.email }
+                placeholder="E-mail"
+                maxLength="255"
+                autoFocus
+                required
+            />
+            <Input type="password"
+                onChange={ event => this.handleChange('password', event) }
+                value={ this.state.password }
+                placeholder="Senha"
+                maxLength="255"
+                required
+            />
             <SubmitButton pending={ this.props.pending }>Fazer login</SubmitButton>
         </form>
     )

@@ -9,16 +9,8 @@ class RegisterForm extends React.Component {
         name: '',
     }
 
-    handleName = event => {
-        this.setState({ name: event.target.value })
-    }
-
-    handleEmail = event => {
-        this.setState({ email: event.target.value })
-    }
-
-    handlePassword = event => {
-        this.setState({ password: event.target.value })
+    handleChange = (field, event) => {
+        this.setState({ [field]: event.target.value })
     }
 
     handleSubmit = event => {
@@ -28,9 +20,28 @@ class RegisterForm extends React.Component {
 
     render = () => (
         <form onSubmit={ this.handleSubmit }>
-            <Input type="text" value={ this.state.name } onChange={ this.handleName } maxLength="255" required label="Nome" autoFocus />
-            <Input type="email" value={ this.state.email } onChange={ this.handleEmail } maxLength="255" required label="E-mail" />
-            <Input type="password" value={ this.state.password } onChange={ this.handlePassword } maxLength="255" required label="Senha" />
+            <Input type="text"
+                onChange={ event => this.handleChange('name', event) }
+                value={ this.state.name }
+                maxLength="255"
+                label="Nome"
+                autoFocus
+                required
+            />
+            <Input type="email"
+                onChange={ event => this.handleChange('email', event) }
+                value={ this.state.email }
+                maxLength="255"
+                label="E-mail"
+                required
+            />
+            <Input type="password"
+                onChange={ event => this.handleChange('password', event) }
+                value={ this.state.password }
+                maxLength="255"
+                label="Senha"
+                required
+            />
             <SubmitButton pending={ this.props.pending }>Fazer cadastro</SubmitButton>
         </form>
     )
