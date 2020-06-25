@@ -1,5 +1,5 @@
 import Http from '../helpers/HttpHelper'
-import { handleError } from '../helpers/MethodsHelper'
+import { float, handleError, money } from '../helpers/MethodsHelper'
 
 const ProductService = (() => {
     const _uris = {
@@ -14,24 +14,24 @@ const ProductService = (() => {
         const data = await Http.get(_uris.list)
 
         return JSON.parse(data).map(product => ({
-            balance: product.Saldo,
-            price: product.Preco,
-            icms: product.ICMS,
+            balance: money(product.Saldo),
+            price: money(product.Preco),
+            icms: money(product.ICMS),
+            ipi: money(product.IPI),
             name: product.Nome,
             ean: product.EAN,
-            ipi: product.IPI,
             id: product.Id,
         }))
     }, [])
 
     const create = async body => await handleError(async () => {
         await Http.post(_uris.create, {
-            Saldo: body.balance,
-            Preco: body.price,
-            ICMS: body.icms,
+            Saldo: float(body.balance),
+            Preco: float(body.price),
+            ICMS: float(body.icms),
+            IPI: float(body.ipi),
             Nome: body.name,
             EAN: body.ean,
-            IPI: body.ipi,
         })
 
         return true
@@ -54,12 +54,12 @@ const ProductService = (() => {
 
     const update = async (id, body) => await handleError(async () => {
         await Http.put(_uris.update + id, {
-            Saldo: body.balance,
-            Preco: body.price,
-            ICMS: body.icms,
+            Saldo: float(body.balance),
+            Preco: float(body.price),
+            ICMS: float(body.icms),
+            IPI: float(body.ipi),
             Nome: body.name,
             EAN: body.ean,
-            IPI: body.ipi,
         })
 
         return true
