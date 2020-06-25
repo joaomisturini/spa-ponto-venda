@@ -38,7 +38,7 @@ class EditForm extends React.Component {
                         onChange={ event => this.handleChange('name', event) }
                         value={ this.state.name }
                         label="Razão social"
-                        maxLength="255"
+                        maxLength="60"
                         autoFocus
                         required
                     />
@@ -47,7 +47,7 @@ class EditForm extends React.Component {
                     <Input type="text"
                         onChange={ event => this.handleChange('cnpj', event) }
                         value={ this.state.cnpj }
-                        maxLength="18"
+                        maxLength="14"
                         label="CNPJ"
                         required
                     />
@@ -59,7 +59,7 @@ class EditForm extends React.Component {
                         onChange={ event => this.handleChange('phone', event) }
                         value={ this.state.phone }
                         label="Telefone"
-                        maxLength="15"
+                        maxLength="20"
                         required
                     />
                 </div>
@@ -67,7 +67,7 @@ class EditForm extends React.Component {
                     <Input type="email"
                         onChange={ event => this.handleChange('email', event) }
                         value={ this.state.email }
-                        maxLength="255"
+                        maxLength="60"
                         label="E-mail"
                         required
                     />

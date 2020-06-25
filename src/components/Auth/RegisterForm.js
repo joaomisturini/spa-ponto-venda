@@ -23,7 +23,7 @@ class RegisterForm extends React.Component {
             <Input type="text"
                 onChange={ event => this.handleChange('name', event) }
                 value={ this.state.name }
-                maxLength="255"
+                maxLength="60"
                 label="Nome"
                 autoFocus
                 required
@@ -31,14 +31,15 @@ class RegisterForm extends React.Component {
             <Input type="email"
                 onChange={ event => this.handleChange('email', event) }
                 value={ this.state.email }
-                maxLength="255"
+                maxLength="120"
                 label="E-mail"
                 required
             />
             <Input type="password"
                 onChange={ event => this.handleChange('password', event) }
                 value={ this.state.password }
-                maxLength="255"
+                maxLength="120"
+                minLength="6"
                 label="Senha"
                 required
             />

@@ -23,7 +23,7 @@ class LoginForm extends React.Component {
                 onChange={ event => this.handleChange('email', event) }
                 value={ this.state.email }
                 placeholder="E-mail"
-                maxLength="255"
+                maxLength="120"
                 autoFocus
                 required
             />
@@ -31,7 +31,8 @@ class LoginForm extends React.Component {
                 onChange={ event => this.handleChange('password', event) }
                 value={ this.state.password }
                 placeholder="Senha"
-                maxLength="255"
+                maxLength="120"
+                minLength="6"
                 required
             />
             <SubmitButton pending={ this.props.pending }>Fazer login</SubmitButton>

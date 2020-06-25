@@ -41,7 +41,7 @@ class EditForm extends React.Component {
                     <Input type="text"
                         onChange={ event => this.handleChange('name', event) }
                         value={ this.state.name }
-                        maxLength="255"
+                        maxLength="60"
                         label="Nome"
                         autoFocus
                         required
@@ -51,7 +51,7 @@ class EditForm extends React.Component {
                     <Input type="text"
                         onChange={ event => this.handleChange('ean', event) }
                         value={ this.state.ean }
-                        maxLength="14"
+                        maxLength="13"
                         label="EAN"
                         required
                     />
