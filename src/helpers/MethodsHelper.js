@@ -8,7 +8,7 @@ export const handleError = async (callback, errorData) => {
             message: error.message,
             title: `Atenção!`,
             type: `danger`,
-        });
+        })
 
         return errorData
     }
