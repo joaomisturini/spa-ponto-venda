@@ -30,7 +30,7 @@ class Navbar extends React.Component {
                         <Link to="/compras" className="nav-link">Compras</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/abrir-caixa" className="nav-link">Abrir caixa</Link>
+                        <Link to="/caixas" className="nav-link">Caixas</Link>
                     </li>
                     <li className="nav-item">
                         <Link to="/consultar-saldo" className="nav-link">Consultar saldo</Link>
