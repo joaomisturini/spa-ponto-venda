@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Ponto de venda",
+  "name": "Sistema de ponto de venda para trabalho 4",
   "icons": [
     {
       "src": "favicon.ico",
