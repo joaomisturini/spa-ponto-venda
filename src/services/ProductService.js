@@ -38,8 +38,9 @@ const ProductService = (() => {
     }, false)
 
     const show = async id => await handleError(async () => {
-        const data = await Http.get(_uris.show + id)
-        const product = JSON.parse(data)
+        const product = JSON.parse(
+            await Http.get(_uris.show + id)
+        )
 
         return {
             balance: product.Saldo,

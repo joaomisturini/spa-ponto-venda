@@ -34,8 +34,9 @@ const ProviderService = (() => {
     }, false)
 
     const show = async id => await handleError(async () => {
-        const data = await Http.get(_uris.show + id)
-        const provider = JSON.parse(data)
+        const provider = JSON.parse(
+            await Http.get(_uris.show + id)
+        )
 
         return {
             name: provider.RazaoSocial,
