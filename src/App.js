@@ -6,6 +6,7 @@ import { AuthRoute, GuestRoute } from './components/Routes'
 
 import ScreensAuthLogin from './screens/Auth/Login'
 import ScreensCashierEdit from './screens/Cashier/Edit'
+import ScreensCashierOpen from './screens/Cashier/Open'
 import ScreensProductEdit from './screens/Product/Edit'
 import ScreensAuthRegister from './screens/Auth/Register'
 import ScreensCashierIndex from './screens/Cashier/Index'
@@ -29,6 +30,7 @@ const App = () => (
             <AuthRoute path="/produtos" render={ props => WithAuth(ScreensProductIndex, props) } />
             <AuthRoute path="/compras" render={ props => WithAuth(ScreensDashboard, props) } />
             <AuthRoute path="/caixas/editar/:id" render={ props => WithAuth(ScreensCashierEdit, props) } />
+            <AuthRoute path="/caixas/abrir/:id" render={ props => WithAuth(ScreensCashierOpen, props) } />
             <AuthRoute path="/caixas/criar" render={ props => WithAuth(ScreensCashierEdit, props) } />
             <AuthRoute path="/caixas" render={ props => WithAuth(ScreensCashierIndex, props) } />
             <AuthRoute path="/consultar-saldo" render={ props => WithAuth(ScreensDashboard, props) } />
