@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
-import AuthService from '../../services/AuthService'
-import RegisterForm from '../../components/Auth/RegisterForm'
+import UserService from '../../services/UserService'
+import RegisterForm from '../../components/User/RegisterForm'
 
-class ScreensAuthRegister extends React.Component {
+class ScreensUserRegister extends React.Component {
     state = {
         registered: false,
         pending: false,
@@ -12,7 +12,7 @@ class ScreensAuthRegister extends React.Component {
     handleRegister = async body => {
         this.setState({ pending: true })
 
-        const registered = await AuthService.register(body)
+        const registered = await UserService.create(body)
         this.setState({ registered, pending: false })
     }
 
@@ -38,4 +38,4 @@ class ScreensAuthRegister extends React.Component {
     }
 }
 
-export default ScreensAuthRegister
+export default ScreensUserRegister

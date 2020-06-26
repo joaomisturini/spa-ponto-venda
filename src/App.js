@@ -8,19 +8,18 @@ import ScreensAuthLogin from './screens/Auth/Login'
 import ScreensCashierEdit from './screens/Cashier/Edit'
 import ScreensCashierOpen from './screens/Cashier/Open'
 import ScreensProductEdit from './screens/Product/Edit'
-import ScreensAuthRegister from './screens/Auth/Register'
+import ScreensUserRegister from './screens/User/Register'
 import ScreensCashierIndex from './screens/Cashier/Index'
 import ScreensProductIndex from './screens/Product/Index'
 import ScreensProviderEdit from './screens/Provider/Edit'
 import ScreensProviderIndex from './screens/Provider/Index'
 import ScreensDashboard from './screens/Dashboard/Dashboard'
 
-
 const App = () => (
     <BrowserRouter>
         <Switch>
             <GuestRoute path="/login" render={ props => WithGuest(ScreensAuthLogin, props) } />
-            <GuestRoute path="/cadastrar" render={ props => WithGuest(ScreensAuthRegister, props) } />
+            <GuestRoute path="/cadastrar" render={ props => WithGuest(ScreensUserRegister, props) } />
 
             <AuthRoute path="/fornecedores/editar/:id" render={ props => WithAuth(ScreensProviderEdit, props) } />
             <AuthRoute path="/fornecedores/criar" render={ props => WithAuth(ScreensProviderEdit, props) } />
