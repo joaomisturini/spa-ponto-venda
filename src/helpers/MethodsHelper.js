@@ -16,11 +16,13 @@ export const float = string => string.toString()
     .replace(/[,]/g, '.').replace(/[.](?=.*[.])/g, '')
 
 export const handleError = async (callback, errorData) => {
+    const decode = string => decodeURIComponent(escape(string))
+
     try {
         return await callback()
     } catch (error) {
         Bus.publish(`notification`, {
-            message: error.message,
+            message: decode(error.message),
             title: `Atenção!`,
             type: `danger`,
         })
