@@ -13,15 +13,15 @@ class EditForm extends React.Component {
     }
 
     componentDidMount = async () => {
-        const provider = await this.props.onLoad()
+        const product = await this.props.onLoad()
 
         this.setState({
-            balance: provider.balance || '',
-            price: provider.price || '',
-            icms: provider.icms || '',
-            name: provider.name || '',
-            ean: provider.ean || '',
-            ipi: provider.ipi || '',
+            balance: product.balance || '',
+            price: product.price || '',
+            icms: product.icms || '',
+            name: product.name || '',
+            ean: product.ean || '',
+            ipi: product.ipi || '',
         })
     }
 
