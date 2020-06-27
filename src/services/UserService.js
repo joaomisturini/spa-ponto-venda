@@ -22,10 +22,10 @@ const UserService = (() => {
 
         return await handleError(async () => {
             await Http.post(_uris.create, {
+                Perfil: body.profile,
                 Senha: body.password,
                 Email: body.email,
                 Nome: body.name,
-                Perfil: 0,
             })
 
             return true
@@ -46,8 +46,8 @@ const UserService = (() => {
 
     const update = async body => await handleError(async () => {
         await Http.post(_uris.update, {
+            Perfil: body.profile,
             Nome: body.name,
-            Perfil: 0,
         })
     })
 
