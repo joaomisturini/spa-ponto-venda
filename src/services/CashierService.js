@@ -3,6 +3,7 @@ import { float, handleError, money, serialize } from '../helpers/MethodsHelper'
 
 const CashierService = (() => {
     const _uris = {
+        close: '/Caixas/FecharCaixa',
         open: '/Caixas/AbrirCaixa',
         list: '/Caixas/Listar',
         destroy: '/Caixas/',
@@ -62,7 +63,13 @@ const CashierService = (() => {
         return true
     }, false)
 
-    return { list, create, show, update, destroy, open }
+    const close = async id => await handleError(async () => {
+        await Http.post(_uris.close + '?' + serialize({ Id: id }))
+
+        return true
+    })
+
+    return { list, create, show, update, destroy, open, close }
 })()
 
 export default CashierService
