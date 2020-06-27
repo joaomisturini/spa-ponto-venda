@@ -21,37 +21,18 @@ class Navbar extends React.Component {
             </button>
 
             <div className={ `collapse navbar-collapse ${ this.state.open ? 'show' : '' }` }>
-                { this._renderLinks() }
+                <ul className="navbar-nav mr-auto">
+                    { this.props.profile < 2 && <NavItem to="/fornecedores">Fornecedores</NavItem>  }
+                    <NavItem to="/produtos">Produtos</NavItem>
+                    { this.props.profile < 2 && <NavItem to="/compras">Compras</NavItem> }
+                    <NavItem to="/caixas">Caixas</NavItem>
+                </ul>
                 <ul className="navbar-nav">
                     <Dropdown onLogout={ this.props.onLogout } />
                 </ul>
             </div>
         </nav>
     )
-
-    _renderLinks = () => {
-        const providerLink = this.props.profile < 2
-            ? <NavItem to="/fornecedores">Fornecedores</NavItem>
-            : ''
-
-        const productLink = this.props.profile < 2
-            ? <NavItem to="/produtos">Produtos</NavItem>
-            : ''
-
-        const purchaseLink = this.props.profile < 2
-            ? <NavItem to="/compras">Compras</NavItem>
-            : ''
-
-        return (
-            <ul className="navbar-nav mr-auto">
-                { providerLink }
-                { productLink }
-                { purchaseLink }
-                <NavItem to="/caixas">Caixas</NavItem>
-                <NavItem to="/consultar-saldo">Consultar saldo</NavItem>
-            </ul>
-        )
-    }
 }
 
 export default Navbar

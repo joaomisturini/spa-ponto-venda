@@ -33,7 +33,6 @@ const App = () => (
             <AuthRoute path="/caixas/abrir/:id" render={ props => WithAuth(ScreensCashierOpen, props) } />
             <AuthRoute path="/caixas/criar" render={ props => WithAuth(ScreensCashierEdit, props) } />
             <AuthRoute path="/caixas" render={ props => WithAuth(ScreensCashierIndex, props) } />
-            <AuthRoute path="/consultar-saldo" render={ props => WithAuth(ScreensDashboard, props) } />
             <AuthRoute path="/perfil" render={ props => WithAuth(ScreensUserProfile, props) } />
             <AuthRoute path="/" render={ props => WithAuth(ScreensDashboard, props) } />
         </Switch>
