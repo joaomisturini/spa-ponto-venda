@@ -13,7 +13,7 @@ class ScreensUserRegister extends React.Component {
     handleChange = (field, value) => {
         this.setState(({ user }) => ({
             user: Object.assign({}, user, { [field]: value }),
-        }) )
+        }))
     }
 
     handleRegister = async () => {
