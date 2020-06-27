@@ -7,22 +7,30 @@ class ScreensProductEdit extends React.Component {
     state = {
         pending: false,
         saved: false,
+        product: {},
     }
 
-    handleLoad = async () => {
+    componentDidMount = async () => {
         const { id } = this.props.match.params
 
-        return id !== undefined ? await ProductService.show(id) : {}
+        const product = id !== undefined ? await ProductService.show(id) : {}
+        this.setState({ product })
     }
 
-    handleSave = async body => {
+    handleChange = (field, value) => {
+        this.setState(({ product }) => ({
+            product: Object.assign({}, product, { [field]: value }),
+        }))
+    }
+
+    handleSave = async () => {
         this.setState({ pending: true })
 
         const { id } = this.props.match.params
 
         const saved = id === undefined
-            ? await ProductService.create(body)
-            : await ProductService.update(id, body)
+            ? await ProductService.create(this.state.product)
+            : await ProductService.update(id, this.state.product)
 
         this.setState({ saved, pending: false })
     }
@@ -45,7 +53,11 @@ class ScreensProductEdit extends React.Component {
                         <Link to="/produtos" className="btn btn-outline-secondary">Voltar</Link>
                     </div>
                 </div>
-                <EditForm pending={ this.state.pending } onSubmit={ this.handleSave } onLoad={ this.handleLoad } />
+                <EditForm pending={ this.state.pending }
+                    onChange={ this.handleChange }
+                    onSubmit={ this.handleSave }
+                    { ...this.state.product  }
+                />
             </>
         )
     }

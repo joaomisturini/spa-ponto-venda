@@ -3,35 +3,13 @@ import Input from '../UI/Input'
 import SubmitButton from '../UI/SubmitButton'
 
 class EditForm extends React.Component {
-    state = {
-        balance: '',
-        price: '',
-        icms: '',
-        name: '',
-        ean: '',
-        ipi: '',
-    }
-
-    componentDidMount = async () => {
-        const product = await this.props.onLoad()
-
-        this.setState({
-            balance: product.balance || '',
-            price: product.price || '',
-            icms: product.icms || '',
-            name: product.name || '',
-            ean: product.ean || '',
-            ipi: product.ipi || '',
-        })
-    }
-
-    handleChange = (field, event) => {
-        this.setState({ [field]: event.target.value })
+    handleChange = (field, { target }) => {
+        this.props.onChange(field, target.value)
     }
 
     handleSubmit = event => {
-        this.props.onSubmit(this.state)
         event.preventDefault()
+        this.props.onSubmit()
     }
 
     render = () => (
@@ -40,7 +18,7 @@ class EditForm extends React.Component {
                 <div className="col-sm">
                     <Input type="text"
                         onChange={ event => this.handleChange('name', event) }
-                        value={ this.state.name }
+                        value={ this.props.name || '' }
                         maxLength="60"
                         label="Nome"
                         autoFocus
@@ -50,7 +28,7 @@ class EditForm extends React.Component {
                 <div className="col-sm">
                     <Input type="text"
                         onChange={ event => this.handleChange('ean', event) }
-                        value={ this.state.ean }
+                        value={ this.props.ean || '' }
                         maxLength="13"
                         label="EAN"
                         required
@@ -61,7 +39,7 @@ class EditForm extends React.Component {
                 <div className="col-sm">
                     <Input type="number"
                         onChange={ event => this.handleChange('price', event) }
-                        value={ this.state.price }
+                        value={ this.props.price || '' }
                         label="Preço"
                         step=".01"
                         required
@@ -71,7 +49,7 @@ class EditForm extends React.Component {
                 <div className="col-sm">
                     <Input type="number"
                         onChange={ event => this.handleChange('ipi', event) }
-                        value={ this.state.ipi }
+                        value={ this.props.ipi || '' }
                         label="IPI"
                         step=".01"
                         required
@@ -83,7 +61,7 @@ class EditForm extends React.Component {
                 <div className="col-sm">
                     <Input type="number"
                         onChange={ event => this.handleChange('icms', event) }
-                        value={ this.state.icms }
+                        value={ this.props.icms || '' }
                         label="ICMS"
                         step=".01"
                         required
@@ -93,7 +71,7 @@ class EditForm extends React.Component {
                 <div className="col-sm">
                     <Input type="number"
                         onChange={ event => this.handleChange('balance', event) }
-                        value={ this.state.balance }
+                        value={ this.props.balance || '' }
                         label="Saldo"
                         step=".01"
                         required
