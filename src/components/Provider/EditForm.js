@@ -4,31 +4,13 @@ import InputMask from '../UI/InputMask'
 import SubmitButton from '../UI/SubmitButton'
 
 class EditForm extends React.Component {
-    state = {
-        phone: '',
-        email: '',
-        name: '',
-        cnpj: '',
-    }
-
-    componentDidMount = async () => {
-        const provider = await this.props.onLoad()
-
-        this.setState({
-            phone: provider.phone || '',
-            email: provider.email || '',
-            name: provider.name || '',
-            cnpj: provider.cnpj || '',
-        })
-    }
-
-    handleChange = (field, event) => {
-        this.setState({ [field]: event.target.value })
+    handleChange = (field, { target }) => {
+        this.props.onChange(field, target.value)
     }
 
     handleSubmit = event => {
-        this.props.onSubmit(this.state)
         event.preventDefault()
+        this.props.onSubmit()
     }
 
     render = () => (
@@ -37,7 +19,7 @@ class EditForm extends React.Component {
                 <div className="col-sm">
                     <Input type="text"
                         onChange={ event => this.handleChange('name', event) }
-                        value={ this.state.name }
+                        value={ this.props.name || '' }
                         label="Razão social"
                         maxLength="60"
                         autoFocus
@@ -47,7 +29,7 @@ class EditForm extends React.Component {
                 <div className="col-sm">
                     <InputMask type="text"
                         onChange={ event => this.handleChange('cnpj', event) }
-                        value={ this.state.cnpj }
+                        value={ this.props.cnpj || '' }
                         mask="99.999.999/9999-99"
                         label="CNPJ"
                         required
@@ -58,7 +40,7 @@ class EditForm extends React.Component {
                 <div className="col-sm">
                     <InputMask type="text"
                         onChange={ event => this.handleChange('phone', event) }
-                        value={ this.state.phone }
+                        value={ this.props.phone || '' }
                         mask="(99) 9999-9999"
                         label="Telefone"
                         required
@@ -67,7 +49,7 @@ class EditForm extends React.Component {
                 <div className="col-sm">
                     <Input type="email"
                         onChange={ event => this.handleChange('email', event) }
-                        value={ this.state.email }
+                        value={ this.props.email || '' }
                         maxLength="60"
                         label="E-mail"
                         required

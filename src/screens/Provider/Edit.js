@@ -6,23 +6,31 @@ import ProviderService from '../../services/ProviderService'
 class ScreensProviderEdit extends React.Component {
     state = {
         pending: false,
+        provider: {},
         saved: false,
     }
 
-    handleLoad = async () => {
+    componentDidMount = async () => {
         const { id } = this.props.match.params
 
-        return id !== undefined ? await ProviderService.show(id) : {}
+        const provider = id !== undefined ? await ProviderService.show(id) : {}
+        this.setState({ provider })
     }
 
-    handleSave = async body => {
+    handleChange = (field, value) => {
+        this.setState(({ provider }) => ({
+            provider: Object.assign({}, provider, { [field]: value }),
+        }))
+    }
+
+    handleSave = async () => {
         this.setState({ pending: true })
 
         const { id } = this.props.match.params
 
         const saved = id === undefined
-            ? await ProviderService.create(body)
-            : await ProviderService.update(id, body)
+            ? await ProviderService.create(this.state.provider)
+            : await ProviderService.update(id, this.state.provider)
 
         this.setState({ saved, pending: false })
     }
@@ -45,7 +53,11 @@ class ScreensProviderEdit extends React.Component {
                         <Link to="/fornecedores" className="btn btn-outline-secondary">Voltar</Link>
                     </div>
                 </div>
-                <EditForm pending={ this.state.pending } onSubmit={ this.handleSave } onLoad={ this.handleLoad } />
+                <EditForm pending={ this.state.pending }
+                    onChange={ this.handleChange }
+                    onSubmit={ this.handleSave }
+                    { ...this.state.provider }
+                />
             </>
         )
     }
