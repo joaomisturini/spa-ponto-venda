@@ -5,6 +5,7 @@ import { WithAuth, WithGuest } from './layouts/Resolvers'
 import { AuthRoute, GuestRoute } from './components/Routes'
 
 import ScreensAuthLogin from './screens/Auth/Login'
+import ScreensUserProfile from './screens/User/Profile'
 import ScreensCashierEdit from './screens/Cashier/Edit'
 import ScreensCashierOpen from './screens/Cashier/Open'
 import ScreensProductEdit from './screens/Product/Edit'
@@ -33,6 +34,7 @@ const App = () => (
             <AuthRoute path="/caixas/criar" render={ props => WithAuth(ScreensCashierEdit, props) } />
             <AuthRoute path="/caixas" render={ props => WithAuth(ScreensCashierIndex, props) } />
             <AuthRoute path="/consultar-saldo" render={ props => WithAuth(ScreensDashboard, props) } />
+            <AuthRoute path="/perfil" render={ props => WithAuth(ScreensUserProfile, props) } />
             <AuthRoute path="/" render={ props => WithAuth(ScreensDashboard, props) } />
         </Switch>
     </BrowserRouter>
