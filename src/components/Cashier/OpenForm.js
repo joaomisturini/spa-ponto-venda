@@ -3,15 +3,13 @@ import Input from '../UI/Input'
 import SubmitButton from '../UI/SubmitButton'
 
 class OpenForm extends React.Component {
-    state = { balance: '' }
-
-    handleChange = (field, event) => {
-        this.setState({ [field]: event.target.value })
+    handleChange = (field, { target }) => {
+        this.props.onChange(field, target.value)
     }
 
     handleSubmit = event => {
-        this.props.onSubmit(this.state)
         event.preventDefault()
+        this.props.onSubmit()
     }
 
     render = () => (
@@ -20,7 +18,7 @@ class OpenForm extends React.Component {
                 <div className="col-sm">
                     <Input type="number"
                         onChange={ event => this.handleChange('balance', event) }
-                        value={ this.state.balance }
+                        value={ this.props.balance || '' }
                         label="Saldo"
                         step=".01"
                         autoFocus

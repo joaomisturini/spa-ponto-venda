@@ -7,6 +7,7 @@ class ScreensCashierOpen extends React.Component {
     state = {
         pending: false,
         opened: false,
+        cashier: {},
         name: '',
     }
 
@@ -14,17 +15,21 @@ class ScreensCashierOpen extends React.Component {
         const { id } = this.props.match.params
 
         const cashier = await CashierService.show(id)
-
         this.setState({ name: cashier.name || '' })
     }
 
-    handleOpen = async body => {
+    handleChange = (field, value) => {
+        this.setState(({ cashier }) => ({
+            cashier: Object.assign({}, cashier, { [field]: value }),
+        }))
+    }
+
+    handleOpen = async () => {
         this.setState({ pending: true })
 
         const { id } = this.props.match.params
 
-        const opened = await CashierService.open(id, body)
-
+        const opened = await CashierService.open(id, this.state.cashier)
         this.setState({ opened, pending: false })
     }
 
@@ -43,7 +48,11 @@ class ScreensCashierOpen extends React.Component {
                         <Link to="/caixas" className="btn btn-outline-secondary">Voltar</Link>
                     </div>
                 </div>
-                <OpenForm pending={ this.state.pending } onSubmit={ this.handleOpen } />
+                <OpenForm pending={ this.state.pending }
+                    onChange={ this.handleChange }
+                    onSubmit={ this.handleOpen }
+                    { ...this.state.cashier }
+                />
             </>
         )
     }
