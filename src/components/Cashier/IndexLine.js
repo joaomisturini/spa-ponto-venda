@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import DestroyButton from '../UI/DestroyButton'
+import PrimaryButton from '../UI/PrimaryButton'
 
 class IndexLine extends React.Component {
     state = { pending: false }
@@ -10,6 +11,15 @@ class IndexLine extends React.Component {
         const destroyed = await this.props.onDestroy(id)
 
         if (! destroyed) {
+            this.setState({ pending: false })
+        }
+    }
+
+    handleClose = async id => {
+        this.setState({ pending: true })
+        const closed = await this.props.onClose(id)
+
+        if (! closed) {
             this.setState({ pending: false })
         }
     }
@@ -38,14 +48,18 @@ class IndexLine extends React.Component {
         const editUri = `/caixas/editar/${ id }`
         const openUri = `/caixas/abrir/${ id }`
 
-        const openButton = ! isOpen
-            ? <Link to={ openUri } className="btn btn-sm btn-outline-primary mr-2">Abrir caixa</Link>
-            : ''
+        const openCloseButton = ! isOpen ? (
+            <Link to={ openUri } className="btn btn-sm btn-outline-primary">Abrir caixa</Link>
+        ) : (
+            <PrimaryButton pending={ this.state.pending } onClick={ () => this.handleClose(id) }>
+                Fechar caixa
+            </PrimaryButton>
+        )
 
         return (
             <>
-                { openButton }
-                <Link to={ editUri } className="btn btn-sm btn-outline-secondary mr-2">Editar</Link>
+                { openCloseButton }
+                <Link to={ editUri } className="btn btn-sm btn-outline-secondary ml-2 mr-2">Editar</Link>
                 <DestroyButton pending={ this.state.pending } onClick={ () => this.handleDestroy(id) }>
                     Excluir
                 </DestroyButton>

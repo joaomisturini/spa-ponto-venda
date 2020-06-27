@@ -23,6 +23,22 @@ class ScreensCashierIndex extends React.Component {
         return destroyed
     }
 
+    handleClose = async id => {
+        const closed = await CashierService.close(id)
+
+        if (closed) {
+            this.setState(({ cashiers }) => {
+                const index = cashiers.findIndex(cashier => cashier.id === id)
+                cashiers[index].balance = '0,00'
+                cashiers[index].isOpen = false
+
+                return { cashiers }
+            })
+        }
+
+        return closed
+    }
+
     render = () => {
         return (
             <>
@@ -33,7 +49,7 @@ class ScreensCashierIndex extends React.Component {
                     </div>
                 </div>
                 <div className="table-responsive mt-3">
-                    <IndexTable onDestroy={ this.handleDestroy } { ...this.state } />
+                    <IndexTable onDestroy={ this.handleDestroy } onClose={ this.handleClose } { ...this.state } />
                 </div>
             </>
         )
