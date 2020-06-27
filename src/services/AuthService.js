@@ -1,3 +1,4 @@
+import UserService from './UserService'
 import Http from '../helpers/HttpHelper'
 import Storage from '../helpers/StorageHelper'
 import { handleError } from '../helpers/MethodsHelper'
@@ -12,11 +13,13 @@ const AuthService = (() => {
         })
 
         Storage.add('token', data)
+        await UserService.fetch()
 
         return true
     }, false)
 
     const logout = async () => {
+        await UserService.destroy()
         Storage.remove('token')
 
         return true

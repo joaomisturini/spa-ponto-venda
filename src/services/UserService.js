@@ -1,5 +1,6 @@
 import Bus from '../helpers/BusHelper'
 import Http from '../helpers/HttpHelper'
+import Storage from '../helpers/StorageHelper'
 import { handleError } from '../helpers/MethodsHelper'
 
 const UserService = (() => {
@@ -32,16 +33,26 @@ const UserService = (() => {
         }, false)
     }
 
-    const show = async () => await handleError(async () => {
-        const user = JSON.parse(
+    const fetch = async () => await handleError(async () => {
+        let user = JSON.parse(
             await Http.get(_uris.show)
         )
 
-        return {
+        Storage.add('user', JSON.stringify({
             profile: user.Perfil,
             email: user.Email,
             name: user.Nome,
+        }))
+    })
+
+    const show = async () => await handleError(async () => {
+        if (! Storage.has('user')) {
+            await fetch()
         }
+
+        const user = Storage.fetch('user')
+
+        return JSON.parse(user)
     }, {})
 
     const update = async body => await handleError(async () => {
@@ -50,10 +61,18 @@ const UserService = (() => {
             Nome: body.name,
         })
 
+        await fetch()
+
         return true
     }, false)
 
-    return { create, show, update }
+    const destroy = async () => {
+        Storage.remove('user')
+
+        return true
+    }
+
+    return { create, fetch, show, update, destroy }
 })()
 
 export default UserService

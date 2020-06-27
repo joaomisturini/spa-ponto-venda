@@ -5,7 +5,9 @@ const StorageHelper = (() => {
 
     const remove = key => localStorage.removeItem(key)
 
-    return { fetch, add, remove }
+    const has = key => fetch(key) !== null
+
+    return { fetch, add, remove, has }
 })()
 
 export default StorageHelper
