@@ -45,7 +45,7 @@ const UserService = (() => {
     })
 
     const update = async body => await handleError(async () => {
-        await Http.post(_uris.update, {
+        await Http.put(_uris.update, {
             Perfil: body.profile,
             Nome: body.name,
         })
