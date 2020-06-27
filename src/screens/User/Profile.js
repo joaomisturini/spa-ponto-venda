@@ -7,17 +7,24 @@ class ScreensUserProfile extends React.Component {
     state = {
         pending: false,
         saved: false,
+        user: {},
     }
 
-    handleLoad = async () => {
-        return await UserService.show()
+    componentDidMount = async () => {
+        const user = await UserService.show()
+        this.setState({ user })
     }
 
-    handleSave = async body => {
+    handleChange = (field, value) => {
+        this.setState(({ user }) => ({
+            user: Object.assign({}, user, { [field]: value }),
+        }) )
+    }
+
+    handleSave = async () => {
         this.setState({ pending: true })
 
-        const saved = await UserService.update(body)
-
+        const saved = await UserService.update(this.state.user)
         this.setState({ saved, pending: false })
     }
 
@@ -29,7 +36,11 @@ class ScreensUserProfile extends React.Component {
         return (
             <>
                 <h3>Editar perfil</h3>
-                <ProfileForm pending={ this.state.pending } onSubmit={ this.handleSave } onLoad={ this.handleLoad } />
+                <ProfileForm pending={ this.state.pending }
+                    onChange={ this.handleChange }
+                    onSubmit={ this.handleSave }
+                    { ...this.state.user }
+                />
             </>
         )
     }

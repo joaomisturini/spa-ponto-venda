@@ -4,11 +4,6 @@ import Select from '../UI/Select'
 import SubmitButton from '../UI/SubmitButton'
 
 class ProfileForm extends React.Component {
-    state = {
-        profile: 0,
-        name: '',
-    }
-
     options = [ {
         text: 'Gerente',
         value: 0,
@@ -20,22 +15,13 @@ class ProfileForm extends React.Component {
         value: 2,
     } ]
 
-    componentDidMount = async () => {
-        const user = await this.props.onLoad()
-
-        this.setState({
-            profile: user.profile || 0,
-            name: user.name || '',
-        })
-    }
-
-    handleChange = (field, event) => {
-        this.setState({ [field]: event.target.value })
+    handleChange = (field, { target }) => {
+        this.props.onChange(field, target.value)
     }
 
     handleSubmit = event => {
-        this.props.onSubmit(this.state)
         event.preventDefault()
+        this.props.onSubmit()
     }
 
     render = () => (
@@ -44,7 +30,7 @@ class ProfileForm extends React.Component {
                 <div className="col-sm">
                     <Input type="text"
                         onChange={ event => this.handleChange('name', event) }
-                        value={ this.state.name }
+                        value={ this.props.name || '' }
                         maxLength="60"
                         label="Nome"
                         autoFocus
@@ -54,7 +40,7 @@ class ProfileForm extends React.Component {
                 <div className="col-sm">
                     <Select options={ this.options }
                         onChange={ event => this.handleChange('profile', event) }
-                        value={ this.state.profile }
+                        value={ this.props.profile || 0 }
                         label="Pefil"
                         required
                     />
