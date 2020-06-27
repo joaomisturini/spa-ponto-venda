@@ -7,22 +7,30 @@ class ScreensCashierEdit extends React.Component {
     state = {
         pending: false,
         saved: false,
+        cashier: {},
     }
 
-    handleLoad = async () => {
+    componentDidMount = async () => {
         const { id } = this.props.match.params
 
-        return id !== undefined ? await CashierService.show(id) : {}
+        const cashier = id !== undefined ? await CashierService.show(id) : {}
+        this.setState({ cashier })
     }
 
-    handleSave = async body => {
+    handleChange = (field, value) => {
+        this.setState(({ cashier }) => ({
+            cashier: Object.assign({}, cashier, { [field]: value }),
+        }))
+    }
+
+    handleSave = async () => {
         this.setState({ pending: true })
 
         const { id } = this.props.match.params
 
         const saved = id === undefined
-            ? await CashierService.create(body)
-            : await CashierService.update(id, body)
+            ? await CashierService.create(this.state.cashier)
+            : await CashierService.update(id, this.state.cashier)
 
         this.setState({ saved, pending: false })
     }
@@ -45,7 +53,11 @@ class ScreensCashierEdit extends React.Component {
                         <Link to="/caixas" className="btn btn-outline-secondary">Voltar</Link>
                     </div>
                 </div>
-                <EditForm pending={ this.state.pending } onSubmit={ this.handleSave } onLoad={ this.handleLoad } />
+                <EditForm pending={ this.state.pending }
+                    onChange={ this.handleChange }
+                    onSubmit={ this.handleSave }
+                    { ...this.state.cashier }
+                />
             </>
         )
     }

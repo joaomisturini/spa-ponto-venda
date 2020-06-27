@@ -3,21 +3,13 @@ import Input from '../UI/Input'
 import SubmitButton from '../UI/SubmitButton'
 
 class EditForm extends React.Component {
-    state = { name: '' }
-
-    componentDidMount = async () => {
-        const cashier = await this.props.onLoad()
-
-        this.setState({ name: cashier.name || '' })
-    }
-
-    handleChange = (field, event) => {
-        this.setState({ [field]: event.target.value })
+    handleChange = (field, { target }) => {
+        this.props.onChange(field, target.value)
     }
 
     handleSubmit = event => {
-        this.props.onSubmit(this.state)
         event.preventDefault()
+        this.props.onSubmit()
     }
 
     render = () => (
@@ -26,7 +18,7 @@ class EditForm extends React.Component {
                 <div className="col-sm">
                     <Input type="text"
                         onChange={ event => this.handleChange('name', event) }
-                        value={ this.state.name }
+                        value={ this.props.name || '' }
                         maxLength="60"
                         label="Nome"
                         autoFocus
