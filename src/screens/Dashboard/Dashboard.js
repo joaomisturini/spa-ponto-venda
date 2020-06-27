@@ -2,7 +2,7 @@ import React from 'react'
 import UserService from '../../services/UserService'
 
 class ScreensDashboard extends React.Component {
-    state = { name: ' '}
+    state = { name: '' }
 
     componentDidMount = async () => {
         const user = await UserService.show()
