@@ -4,14 +4,6 @@ import Select from '../UI/Select'
 import SubmitButton from '../UI/SubmitButton'
 
 class RegisterForm extends React.Component {
-    state = {
-        password_confirmation: '',
-        password: '',
-        profile: 0,
-        email: '',
-        name: '',
-    }
-
     options = [ {
         text: 'Gerente',
         value: 0,
@@ -23,20 +15,20 @@ class RegisterForm extends React.Component {
         value: 2,
     } ]
 
-    handleChange = (field, event) => {
-        this.setState({ [field]: event.target.value })
+    handleChange = (field, { target }) => {
+        this.props.onChange(field, target.value)
     }
 
     handleSubmit = event => {
-        this.props.onSubmit(this.state)
         event.preventDefault()
+        this.props.onSubmit()
     }
 
     render = () => (
         <form onSubmit={ this.handleSubmit }>
             <Input type="text"
                 onChange={ event => this.handleChange('name', event) }
-                value={ this.state.name }
+                value={ this.props.name || '' }
                 maxLength="60"
                 label="Nome"
                 autoFocus
@@ -44,14 +36,14 @@ class RegisterForm extends React.Component {
             />
             <Input type="email"
                 onChange={ event => this.handleChange('email', event) }
-                value={ this.state.email }
+                value={ this.props.email || '' }
                 maxLength="120"
                 label="E-mail"
                 required
             />
             <Input type="password"
                 onChange={ event => this.handleChange('password', event) }
-                value={ this.state.password }
+                value={ this.props.password || '' }
                 maxLength="120"
                 minLength="6"
                 label="Senha"
@@ -59,7 +51,7 @@ class RegisterForm extends React.Component {
             />
             <Input type="password"
                 onChange={ event => this.handleChange('password_confirmation', event) }
-                value={ this.state.password_confirmation }
+                value={ this.props.password_confirmation || '' }
                 label="Confirme a senha"
                 maxLength="120"
                 minLength="6"
@@ -67,7 +59,7 @@ class RegisterForm extends React.Component {
             />
             <Select options={ this.options }
                 onChange={ event => this.handleChange('profile', event) }
-                value={ this.state.profile }
+                value={ this.props.profile || 0 }
                 label="Pefil"
                 required
             />

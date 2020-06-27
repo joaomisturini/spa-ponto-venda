@@ -7,12 +7,19 @@ class ScreensUserRegister extends React.Component {
     state = {
         registered: false,
         pending: false,
+        user: {},
     }
 
-    handleRegister = async body => {
+    handleChange = (field, value) => {
+        this.setState(({ user }) => ({
+            user: Object.assign({}, user, { [field]: value }),
+        }) )
+    }
+
+    handleRegister = async () => {
         this.setState({ pending: true })
 
-        const registered = await UserService.create(body)
+        const registered = await UserService.create(this.state.user)
         this.setState({ registered, pending: false })
     }
 
@@ -27,7 +34,11 @@ class ScreensUserRegister extends React.Component {
                     <div className="card-body">
                         <h2 className="card-title text-center">Ponto de venda</h2>
                         <p className="card-text text-muted text-center">Faça seu cadastro</p>
-                        <RegisterForm pending={ this.state.pending } onSubmit={ this.handleRegister } />
+                        <RegisterForm pending={ this.state.pending }
+                            onSubmit={ this.handleRegister }
+                            onChange={ this.handleChange }
+                            { ...this.state.user }
+                        />
                     </div>
                     <div className="card-footer text-right">
                         <Link to="/login" className="card-link">Fazer login</Link>
