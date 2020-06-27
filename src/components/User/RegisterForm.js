@@ -1,14 +1,27 @@
 import React from 'react'
 import Input from '../UI/Input'
+import Select from '../UI/Select'
 import SubmitButton from '../UI/SubmitButton'
 
 class RegisterForm extends React.Component {
     state = {
         password_confirmation: '',
         password: '',
+        profile: 0,
         email: '',
         name: '',
     }
+
+    options = [ {
+        text: 'Gerente',
+        value: 0,
+    }, {
+        text: 'Usuário de back-office',
+        value: 1,
+    }, {
+        text: 'Operador de caixa',
+        value: 2,
+    } ]
 
     handleChange = (field, event) => {
         this.setState({ [field]: event.target.value })
@@ -50,6 +63,12 @@ class RegisterForm extends React.Component {
                 label="Confirme a senha"
                 maxLength="120"
                 minLength="6"
+                required
+            />
+            <Select options={ this.options }
+                onChange={ event => this.handleChange('profile', event) }
+                value={ this.state.profile }
+                label="Pefil"
                 required
             />
             <SubmitButton pending={ this.props.pending }>Fazer cadastro</SubmitButton>
