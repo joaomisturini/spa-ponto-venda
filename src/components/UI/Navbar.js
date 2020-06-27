@@ -2,19 +2,38 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 class Navbar extends React.Component {
-    state = { menuOpen: false }
+    state = {
+        profileOpen: false,
+        menuOpen: false,
+    }
 
-    handleClick = () => {
+    handleMenuClick = event => {
+        event.preventDefault()
+
         this.setState(({ menuOpen }) => ({
             menuOpen: ! menuOpen,
         }))
+    }
+
+    handleProfileClick = event => {
+        event.preventDefault()
+
+        this.setState(({ profileOpen }) => ({
+            profileOpen: ! profileOpen,
+        }))
+    }
+
+    handleLogoutClick = event => {
+        event.preventDefault()
+
+        this.props.onLogout()
     }
 
     render = () => (
         <nav className="navbar navbar-expand-md navbar-light bg-light">
             <Link to="/" className="navbar-brand">Ponto de venda</Link>
 
-            <button type="button" className="navbar-toggler" onClick={ this.handleClick }>
+            <button type="button" className="navbar-toggler" onClick={ this.handleMenuClick }>
                 <span className="navbar-toggler-icon"></span>
             </button>
 
@@ -37,11 +56,19 @@ class Navbar extends React.Component {
                     </li>
                 </ul>
 
-                <button type="button" onClick={ this.props.onLogout }
-                    className="btn btn-outline-danger my-2 my-md-0"
-                >
-                    Sair
-                </button>
+                <ul className="navbar-nav">
+                    <li className="nav-item dropdown active">
+                        <a href="#perfil" className="nav-link dropdown-toggle" onClick={ this.handleProfileClick }>
+                            Meu perfil
+                        </a>
+                        <div className={ `dropdown-menu dropdown-menu-right ${ this.state.profileOpen ? 'show' : '' }` }>
+                            <Link to="/perfil" className="dropdown-item">Editar</Link>
+                            <a href="#logout" className="dropdown-item text-danger" onClick={ this.handleLogoutClick }>
+                                Fazer logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </nav>
     )
