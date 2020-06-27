@@ -42,14 +42,16 @@ const UserService = (() => {
             email: user.Email,
             name: user.Nome,
         }
-    })
+    }, {})
 
     const update = async body => await handleError(async () => {
         await Http.put(_uris.update, {
             Perfil: body.profile,
             Nome: body.name,
         })
-    })
+
+        return true
+    }, false)
 
     return { create, show, update }
 })()
