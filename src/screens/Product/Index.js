@@ -4,12 +4,23 @@ import ProductService from '../../services/ProductService'
 import IndexTable from '../../components/Product/IndexTable'
 
 class ScreensProductIndex extends React.Component {
-    handleLoad = async () => {
-        return await ProductService.list()
+    state = { products: [] }
+
+    componentDidMount = async () => {
+        const products = await ProductService.list()
+        this.setState({ products })
     }
 
     handleDestroy = async id => {
-        return await ProductService.destroy(id)
+        const destroyed = await ProductService.destroy(id)
+
+        if (destroyed) {
+            this.setState(({ products }) => ({
+                products: products.filter(product => product.id !== id),
+            }))
+        }
+
+        return destroyed
     }
 
     render = () => (
@@ -23,7 +34,7 @@ class ScreensProductIndex extends React.Component {
                 </div>
             </div>
             <div className="table-responsive mt-3">
-                <IndexTable onLoad={ this.handleLoad } onDestroy={ this.handleDestroy } />
+                <IndexTable onDestroy={ this.handleDestroy } { ...this.state } />
             </div>
         </>
     )

@@ -2,25 +2,6 @@ import React from 'react'
 import IndexLine from './IndexLine'
 
 class IndexTable extends React.Component {
-    state = { products: [] }
-
-    componentDidMount = async () => {
-        const products = await this.props.onLoad()
-        this.setState({ products })
-    }
-
-    handleDestroy = async id => {
-        const destroyed = await this.props.onDestroy(id)
-
-        if (destroyed) {
-            this.setState(({ products }) => ({
-                products: products.filter(product => product.id !== id),
-            }))
-        }
-
-        return destroyed
-    }
-
     render = () => (
         <table className="table table-striped">
             <thead>
@@ -38,8 +19,8 @@ class IndexTable extends React.Component {
         </table>
     )
 
-    _renderLines = () => this.state.products.map(product => (
-        <IndexLine key={ product.id } product={ product } onDestroy={ this.handleDestroy } />
+    _renderLines = () => this.props.products.map(product => (
+        <IndexLine key={ product.id } product={ product } onDestroy={ this.props.onDestroy } />
     ))
 }
 
