@@ -1,11 +1,21 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import Navbar from '../components/UI/Navbar'
+import Navbar from '../components/Navbar/Navbar'
 import AuthService from '../services/AuthService'
+import UserService from '../services/UserService'
 import NotificationWrapper from '../components/Notification/Wrapper'
 
 class LayoutsAuth extends React.Component {
-    state = { logged: true }
+    state = {
+        logged: true,
+        profile: 0,
+    }
+
+    componentDidMount = async () => {
+        const { profile } = await UserService.show()
+
+        this.setState({ profile })
+    }
 
     handleLogout = async () => {
         const isOut = await AuthService.logout()
@@ -19,7 +29,9 @@ class LayoutsAuth extends React.Component {
 
         return (
             <>
-                <header><Navbar onLogout={ this.handleLogout } /></header>
+                <header>
+                    <Navbar profile={ this.state.profile } onLogout={ this.handleLogout } />
+                </header>
                 <div className="container-fluid pt-4">{ this.props.children }</div>
                 <NotificationWrapper />
             </>
