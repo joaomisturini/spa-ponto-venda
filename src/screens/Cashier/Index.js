@@ -4,29 +4,40 @@ import CashierService from '../../services/CashierService'
 import IndexTable from '../../components/Cashier/IndexTable'
 
 class ScreensCashierIndex extends React.Component {
-    handleLoad = async () => {
-        return await CashierService.list()
+    state = { cashiers: [] }
+
+    componentDidMount = async () => {
+        const cashiers = await CashierService.list()
+        this.setState({ cashiers })
     }
 
     handleDestroy = async id => {
-        return await CashierService.destroy(id)
+        const destroyed = await CashierService.destroy(id)
+
+        if (destroyed) {
+            this.setState(({ cashiers }) => ({
+                cashiers: cashiers.filter(cashier => cashier.id !== id),
+            }))
+        }
+
+        return destroyed
     }
 
-    render = () => (
-        <>
-            <div className="row">
-                <div className="col-sm">
-                    <h3>Caixas</h3>
+    render = () => {
+        return (
+            <>
+                <div className="row">
+                    <div className="col-sm"><h3>Caixas</h3></div>
+                    <div className="col-sm text-right">
+                        <Link to="/caixas/criar" className="btn btn-outline-primary">Novo caixa</Link>
+                    </div>
                 </div>
-                <div className="col-sm text-right">
-                    <Link to="/caixas/criar" className="btn btn-outline-primary">Novo caixa</Link>
+                <div className="table-responsive mt-3">
+                    <IndexTable onDestroy={ this.handleDestroy } { ...this.state } />
                 </div>
-            </div>
-            <div className="table-responsive mt-3">
-                <IndexTable onLoad={ this.handleLoad } onDestroy={ this.handleDestroy } />
-            </div>
-        </>
-    )
+            </>
+        )
+    }
 }
 
 export default ScreensCashierIndex
