@@ -5,14 +5,21 @@ import LoginForm from '../../components/Auth/LoginForm'
 
 class ScreensAuthLogin extends React.Component {
     state = {
+        credentials: {},
         pending: false,
         logged: false,
     }
 
-    handleLogin = async body => {
+    handleChange = (field, value) => {
+        this.setState(({ credentials }) => ({
+            credentials: Object.assign({}, credentials, { [field]: value }),
+        }))
+    }
+
+    handleLogin = async () => {
         this.setState({ pending: true })
 
-        const logged = await AuthService.login(body)
+        const logged = await AuthService.login(this.state.credentials)
         this.setState({ logged, pending: false })
     }
 
@@ -27,7 +34,11 @@ class ScreensAuthLogin extends React.Component {
                     <div className="card-body">
                         <h2 className="card-title text-center">Ponto de venda</h2>
                         <p className="card-text text-muted text-center">Faça login para continuar</p>
-                        <LoginForm pending={ this.state.pending } onSubmit={ this.handleLogin } />
+                        <LoginForm pending={ this.state.pending }
+                            onChange={ this.handleChange }
+                            onSubmit={ this.handleLogin }
+                            { ...this.state.credentials }
+                        />
                     </div>
                     <div className="card-footer text-right">
                         <Link to="/cadastrar" className="card-link">Cadastrar-se</Link>

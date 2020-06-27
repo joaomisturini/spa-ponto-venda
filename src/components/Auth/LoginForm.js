@@ -3,25 +3,20 @@ import Input from '../UI/Input'
 import SubmitButton from '../UI/SubmitButton'
 
 class LoginForm extends React.Component {
-    state = {
-        password: '',
-        email: '',
-    }
-
-    handleChange = (field, event) => {
-        this.setState({ [field]: event.target.value })
+    handleChange = (field, { target }) => {
+        this.props.onChange(field, target.value)
     }
 
     handleSubmit = event => {
-        this.props.onSubmit(this.state)
         event.preventDefault()
+        this.props.onSubmit()
     }
 
     render = () => (
         <form onSubmit={ this.handleSubmit }>
             <Input type="email"
                 onChange={ event => this.handleChange('email', event) }
-                value={ this.state.email }
+                value={ this.props.email || '' }
                 placeholder="E-mail"
                 maxLength="120"
                 autoFocus
@@ -29,7 +24,7 @@ class LoginForm extends React.Component {
             />
             <Input type="password"
                 onChange={ event => this.handleChange('password', event) }
-                value={ this.state.password }
+                value={ this.props.password || '' }
                 placeholder="Senha"
                 maxLength="120"
                 minLength="6"
