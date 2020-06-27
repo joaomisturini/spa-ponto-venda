@@ -4,12 +4,23 @@ import ProviderService from '../../services/ProviderService'
 import IndexTable from '../../components/Provider/IndexTable'
 
 class ScreensProviderIndex extends React.Component {
-    handleLoad = async () => {
-        return await ProviderService.list()
+    state = { providers: [] }
+
+    componentDidMount = async () => {
+        const providers = await ProviderService.list()
+        this.setState({ providers })
     }
 
     handleDestroy = async id => {
-        return await ProviderService.destroy(id)
+        const destroyed = await ProviderService.destroy(id)
+
+        if (destroyed) {
+            this.setState(({ providers }) => ({
+                providers: providers.filter(provider => provider.id !== id),
+            }))
+        }
+
+        return destroyed
     }
 
     render = () => (
@@ -23,7 +34,7 @@ class ScreensProviderIndex extends React.Component {
                 </div>
             </div>
             <div className="table-responsive mt-3">
-                <IndexTable onLoad={ this.handleLoad } onDestroy={ this.handleDestroy } />
+                <IndexTable onDestroy={ this.handleDestroy } { ...this.state } />
             </div>
         </>
     )
