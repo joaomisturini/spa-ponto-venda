@@ -46,9 +46,7 @@ class ScreensProviderEdit extends React.Component {
         return (
             <>
                 <div className="row">
-                    <div className="col-sm">
-                        <h3>Fornecedores - { action }</h3>
-                    </div>
+                    <div className="col-sm"><h3>Fornecedores - { action }</h3></div>
                     <div className="col-sm text-right">
                         <Link to="/fornecedores" className="btn btn-outline-secondary">Voltar</Link>
                     </div>

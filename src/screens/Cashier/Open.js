@@ -41,9 +41,7 @@ class ScreensCashierOpen extends React.Component {
         return (
             <>
                 <div className="row">
-                    <div className="col-sm">
-                        <h3>Abrir caixa - { this.state.name }</h3>
-                    </div>
+                    <div className="col-sm"><h3>Abrir caixa - { this.state.name }</h3></div>
                     <div className="col-sm text-right">
                         <Link to="/caixas" className="btn btn-outline-secondary">Voltar</Link>
                     </div>
