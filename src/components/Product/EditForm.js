@@ -75,7 +75,6 @@ class EditForm extends React.Component {
                         label="Saldo"
                         step=".01"
                         required
-                        min="0"
                     />
                 </div>
             </div>
