@@ -39,19 +39,17 @@ class ScreensCashierIndex extends React.Component {
         return closed
     }
 
-    render = () => {
-        return (
-            <>
-                <div className="row">
-                    <div className="col-sm"><h3>Caixas</h3></div>
-                    <div className="col-sm text-right">
-                        <Link to="/caixas/criar" className="btn btn-outline-primary">Novo caixa</Link>
-                    </div>
+    render = () => (
+        <>
+            <div className="row mb-2">
+                <div className="col-sm"><h3>Caixas</h3></div>
+                <div className="col-sm text-right">
+                    <Link to="/caixas/criar" className="btn btn-outline-primary">Novo caixa</Link>
                 </div>
-                <IndexTable onDestroy={ this.handleDestroy } onClose={ this.handleClose } { ...this.state } />
-            </>
-        )
-    }
+            </div>
+            <IndexTable onDestroy={ this.handleDestroy } onClose={ this.handleClose } { ...this.state } />
+        </>
+    )
 }
 
 export default ScreensCashierIndex

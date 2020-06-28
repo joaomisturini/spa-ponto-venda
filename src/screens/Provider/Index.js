@@ -25,10 +25,8 @@ class ScreensProviderIndex extends React.Component {
 
     render = () => (
         <>
-            <div className="row">
-                <div className="col-sm">
-                    <h3>Fornecedores</h3>
-                </div>
+            <div className="row mb-2">
+                <div className="col-sm"><h3>Fornecedores</h3></div>
                 <div className="col-sm text-right">
                     <Link to="/fornecedores/criar" className="btn btn-outline-primary">Novo fornecedor</Link>
                 </div>
