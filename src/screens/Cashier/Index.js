@@ -1,12 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import UserService from '../../services/UserService'
 import CashierService from '../../services/CashierService'
 import IndexTable from '../../components/Cashier/IndexTable'
 
 class ScreensCashierIndex extends React.Component {
-    state = { cashiers: [] }
+    state = {
+        cashiers: [],
+        profile: 0,
+    }
 
     componentDidMount = async () => {
+        const { profile } = await UserService.show()
+        this.setState({ profile })
+
         const cashiers = await CashierService.list()
         this.setState({ cashiers })
     }
@@ -43,9 +50,11 @@ class ScreensCashierIndex extends React.Component {
         <>
             <div className="row mb-2">
                 <div className="col-sm"><h3>Caixas</h3></div>
-                <div className="col-sm text-right">
-                    <Link to="/caixas/criar" className="btn btn-outline-primary">Novo caixa</Link>
-                </div>
+                { this.state.profile === 0 && (
+                    <div className="col-sm text-right">
+                        <Link to="/caixas/criar" className="btn btn-outline-primary">Novo caixa</Link>
+                    </div>
+                ) }
             </div>
             <IndexTable onDestroy={ this.handleDestroy } onClose={ this.handleClose } { ...this.state } />
         </>
