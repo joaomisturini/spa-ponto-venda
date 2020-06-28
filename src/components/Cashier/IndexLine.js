@@ -50,15 +50,17 @@ class IndexLine extends React.Component {
             ? <Link to={ openUri } className="btn btn-sm btn-outline-primary">Abrir caixa</Link>
             : <IndexDropdown id={ id } pending={ this.state.pending } onClose={ () => this.handleClose(id) } />
 
-        return (
-            <>
-                { openCloseButton }
-                <Link to={ editUri } className="btn btn-sm btn-outline-secondary ml-2 mr-2">Editar</Link>
-                <DestroyButton pending={ this.state.pending } onClick={ () => this.handleDestroy(id) }>
-                    Excluir
-                </DestroyButton>
-            </>
+        const editButton = this.props.profile === 0 && (
+            <Link to={ editUri } className="btn btn-sm btn-outline-secondary ml-2 mr-2">Editar</Link>
         )
+
+        const destroyButton = this.props.profile === 0 && (
+            <DestroyButton pending={ this.state.pending } onClick={ () => this.handleDestroy(id) }>
+                Excluir
+            </DestroyButton>
+        )
+
+        return <>{ openCloseButton }{ editButton }{ destroyButton }</>
     }
 }
 
