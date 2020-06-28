@@ -48,9 +48,7 @@ class ScreensCashierIndex extends React.Component {
                         <Link to="/caixas/criar" className="btn btn-outline-primary">Novo caixa</Link>
                     </div>
                 </div>
-                <div className="table-responsive mt-3">
-                    <IndexTable onDestroy={ this.handleDestroy } onClose={ this.handleClose } { ...this.state } />
-                </div>
+                <IndexTable onDestroy={ this.handleDestroy } onClose={ this.handleClose } { ...this.state } />
             </>
         )
     }

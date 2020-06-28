@@ -33,9 +33,7 @@ class ScreensProductIndex extends React.Component {
                     <Link to="/produtos/criar" className="btn btn-outline-primary">Novo produto</Link>
                 </div>
             </div>
-            <div className="table-responsive mt-3">
-                <IndexTable onDestroy={ this.handleDestroy } { ...this.state } />
-            </div>
+            <IndexTable onDestroy={ this.handleDestroy } { ...this.state } />
         </>
     )
 }
