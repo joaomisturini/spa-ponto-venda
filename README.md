@@ -14,3 +14,5 @@ Caso esteja utilizando Docker, basta executar `docker-compose up` na pasta raíz
 ## Acesso
 
 A aplicação estará disponível em http://localhost:3000.
+
+Uma versão em produção pode ser acessada em https://joaomisturini.github.io/spa-ponto-venda.
