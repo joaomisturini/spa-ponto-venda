@@ -1,4 +1,5 @@
 import React from 'react'
+import MoneyTd from '../UI/MoneyTd'
 import { Link } from 'react-router-dom'
 import DestroyButton from '../UI/DestroyButton'
 
@@ -20,8 +21,8 @@ class IndexLine extends React.Component {
         const taxColumns = this.props.profile < 2 && (
             <>
                 <td>{ product.ean }</td>
-                <td>R$ { product.ipi }</td>
-                <td>R$ { product.icms }</td>
+                <MoneyTd prefix="R$ ">{ product.ipi }</MoneyTd>
+                <MoneyTd prefix="R$ ">{ product.icms }</MoneyTd>
                 <td className="text-right">{ this._renderButtons(id) }</td>
             </>
         )
@@ -29,8 +30,8 @@ class IndexLine extends React.Component {
         return (
             <tr>
                 <td>{ product.name }</td>
-                <td>R$ { product.price }</td>
-                <td>{ product.balance }</td>
+                <MoneyTd prefix="R$ ">{ product.price }</MoneyTd>
+                <MoneyTd>{ product.balance }</MoneyTd>
                 { taxColumns }
             </tr>
         )

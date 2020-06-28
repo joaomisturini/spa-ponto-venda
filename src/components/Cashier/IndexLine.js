@@ -1,4 +1,5 @@
 import React from 'react'
+import MoneyTd from '../UI/MoneyTd'
 import { Link } from 'react-router-dom'
 import IndexDropdown from './IndexDropdown'
 import DestroyButton from '../UI/DestroyButton'
@@ -28,7 +29,7 @@ class IndexLine extends React.Component {
         return (
             <tr>
                 <td>{ cashier.name }</td>
-                <td>R$ { cashier.balance }</td>
+                <MoneyTd prefix="R$ ">{ cashier.balance }</MoneyTd>
                 <td>{ this._renderBadge(open) }</td>
                 <td className="text-right">{ this._renderButtons(id, open) }</td>
             </tr>
