@@ -27,7 +27,7 @@ class IndexDropdown extends React.Component {
                 >
                     { this.props.pending ? 'Aguarde...' : 'Operar caixa' }
                 </button>
-                <div className={ `dropdown-menu ${ this.state.open ? 'show' : '' }` }>
+                <div className={ `dropdown-menu dropdown-menu-right ${ this.state.open ? 'show' : '' }` }>
                     <Link to={ depositUri } className="dropdown-item">Depositar valor</Link>
                     <Link to={ withdrawUri } className="dropdown-item">Sacar valor</Link>
                     <a href="#fechar" className="dropdown-item text-danger" onClick={ this.handleClose }>Fechar</a>
