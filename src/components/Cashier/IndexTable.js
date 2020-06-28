@@ -20,6 +20,7 @@ class IndexTable extends React.Component {
         <IndexLine key={ cashier.id }
             onDestroy={ this.props.onDestroy }
             onClose={ this.props.onClose }
+            profile={ this.props.profile }
             cashier={ cashier }
         />
     ))
