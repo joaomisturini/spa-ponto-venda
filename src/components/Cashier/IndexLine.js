@@ -50,7 +50,7 @@ class IndexLine extends React.Component {
 
         const openCloseButton = ! isOpen
             ? <Link to={ openUri } className="btn btn-sm btn-outline-primary">Abrir caixa</Link>
-            : <IndexDropdown pending={ this.state.pending } onClose={ () => this.handleClose(id) } />
+            : <IndexDropdown id={ id } pending={ this.state.pending } onClose={ () => this.handleClose(id) } />
 
         return (
             <>

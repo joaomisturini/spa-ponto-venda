@@ -15,6 +15,7 @@ import ScreensProductIndex from './screens/Product/Index'
 import ScreensProviderEdit from './screens/Provider/Edit'
 import ScreensProviderIndex from './screens/Provider/Index'
 import ScreensDashboard from './screens/Dashboard/Dashboard'
+import ScreensCashierTransact from './screens/Cashier/Transact'
 
 const App = () => (
     <BrowserRouter>
@@ -29,6 +30,8 @@ const App = () => (
             <AuthRoute path="/produtos/criar" render={ props => WithAuth(ScreensProductEdit, props) } />
             <AuthRoute path="/produtos" render={ props => WithAuth(ScreensProductIndex, props) } />
             <AuthRoute path="/compras" render={ props => WithAuth(ScreensDashboard, props) } />
+            <AuthRoute path="/caixas/depositar/:id" render={ props => WithAuth(ScreensCashierTransact, props) } />
+            <AuthRoute path="/caixas/sacar/:id" render={ props => WithAuth(ScreensCashierTransact, props) } />
             <AuthRoute path="/caixas/editar/:id" render={ props => WithAuth(ScreensCashierEdit, props) } />
             <AuthRoute path="/caixas/abrir/:id" render={ props => WithAuth(ScreensCashierOpen, props) } />
             <AuthRoute path="/caixas/criar" render={ props => WithAuth(ScreensCashierEdit, props) } />
