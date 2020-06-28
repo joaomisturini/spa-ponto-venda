@@ -16,25 +16,36 @@ class IndexLine extends React.Component {
 
     render = () => {
         const { id, ...product } = this.props.product
-        const editUri = `/produtos/editar/${ id }`
+
+        const taxColumns = this.props.profile < 2 && (
+            <>
+                <td>{ product.ean }</td>
+                <td>R$ { product.ipi }</td>
+                <td>R$ { product.icms }</td>
+                <td className="text-right">{ this._renderButtons(id) }</td>
+            </>
+        )
 
         return (
             <tr>
                 <td>{ product.name }</td>
-                <td>{ product.ean }</td>
                 <td>R$ { product.price }</td>
-                <td>R$ { product.ipi }</td>
-                <td>R$ { product.icms }</td>
                 <td>{ product.balance }</td>
-                <td className="text-right">
-                    <Link to={ editUri } className="btn btn-sm btn-outline-secondary mr-2">Editar</Link>
-                    <DestroyButton pending={ this.state.pending } onClick={ () => this.handleDestroy(id) }>
-                        Excluir
-                    </DestroyButton>
-                </td>
+                { taxColumns }
             </tr>
         )
     }
+
+    _renderButtons = id => (
+        <>
+            <Link to={ `/produtos/editar/${ id }` } className="btn btn-sm btn-outline-secondary mr-2">
+                Editar
+            </Link>
+            <DestroyButton pending={ this.state.pending } onClick={ () => this.handleDestroy(id) }>
+                Excluir
+            </DestroyButton>
+        </>
+    )
 }
 
 export default IndexLine
