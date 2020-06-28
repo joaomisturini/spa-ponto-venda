@@ -17,11 +17,9 @@ class IndexLine extends React.Component {
 
     handleClose = async id => {
         this.setState({ pending: true })
-        const closed = await this.props.onClose(id)
 
-        if (! closed) {
-            this.setState({ pending: false })
-        }
+        await this.props.onClose(id)
+        this.setState({ pending: false })
     }
 
     render = () => {
