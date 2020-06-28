@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import IndexDropdown from './IndexDropdown'
 import DestroyButton from '../UI/DestroyButton'
-import PrimaryButton from '../UI/PrimaryButton'
 
 class IndexLine extends React.Component {
     state = { pending: false }
@@ -48,13 +48,9 @@ class IndexLine extends React.Component {
         const editUri = `/caixas/editar/${ id }`
         const openUri = `/caixas/abrir/${ id }`
 
-        const openCloseButton = ! isOpen ? (
-            <Link to={ openUri } className="btn btn-sm btn-outline-primary">Abrir caixa</Link>
-        ) : (
-            <PrimaryButton pending={ this.state.pending } onClick={ () => this.handleClose(id) }>
-                Fechar caixa
-            </PrimaryButton>
-        )
+        const openCloseButton = ! isOpen
+            ? <Link to={ openUri } className="btn btn-sm btn-outline-primary">Abrir caixa</Link>
+            : <IndexDropdown pending={ this.state.pending } onClose={ () => this.handleClose(id) } />
 
         return (
             <>

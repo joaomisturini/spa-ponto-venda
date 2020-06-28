@@ -6,13 +6,11 @@ class Dropdown extends React.Component {
 
     handleClick = event => {
         event.preventDefault()
-
         this.setState(({ open }) => ({ open: ! open }))
     }
 
     handleLogout = event => {
         event.preventDefault()
-
         this.props.onLogout()
     }
 
