@@ -25,30 +25,30 @@ class IndexLine extends React.Component {
     }
 
     render = () => {
-        const { id, isOpen, ...cashier } = this.props.cashier
+        const { id, open, ...cashier } = this.props.cashier
 
         return (
             <tr>
                 <td>{ cashier.name }</td>
                 <td>R$ { cashier.balance }</td>
-                <td>{ this._renderBadge(isOpen) }</td>
-                <td className="text-right">{ this._renderButtons(id, isOpen) }</td>
+                <td>{ this._renderBadge(open) }</td>
+                <td className="text-right">{ this._renderButtons(id, open) }</td>
             </tr>
         )
     }
 
-    _renderBadge = isOpen => {
-        const badgeClass = isOpen ? 'success' : 'danger'
-        const badgeText = isOpen ? 'Aberto' : 'Fechado'
+    _renderBadge = open => {
+        const badgeClass = open ? 'success' : 'danger'
+        const badgeText = open ? 'Aberto' : 'Fechado'
 
         return <span className={ `badge badge-${ badgeClass }` }>{ badgeText }</span>
     }
 
-    _renderButtons = (id, isOpen) => {
+    _renderButtons = (id, open) => {
         const editUri = `/caixas/editar/${ id }`
         const openUri = `/caixas/abrir/${ id }`
 
-        const openCloseButton = ! isOpen
+        const openCloseButton = ! open
             ? <Link to={ openUri } className="btn btn-sm btn-outline-primary">Abrir caixa</Link>
             : <IndexDropdown id={ id } pending={ this.state.pending } onClose={ () => this.handleClose(id) } />
 

@@ -19,7 +19,7 @@ const CashierService = (() => {
 
         return JSON.parse(data).map(cashier => ({
             balance: money(cashier.Saldo),
-            isOpen: cashier.Saldo > 0,
+            open: cashier.Saldo > 0,
             name: cashier.Nome,
             id: cashier.Id,
         }))
@@ -37,7 +37,7 @@ const CashierService = (() => {
         )
 
         return {
-            isOpen: cashier.Saldo > 0,
+            open: cashier.Saldo > 0,
             balance: cashier.Saldo,
             name: cashier.Nome,
             id: cashier.Id,
