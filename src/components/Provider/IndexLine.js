@@ -1,4 +1,6 @@
 import React from 'react'
+import CnpjTd from '../UI/CnpjTd'
+import PhoneTd from '../UI/PhoneTd'
 import { Link } from 'react-router-dom'
 import DestroyButton from '../UI/DestroyButton'
 
@@ -21,8 +23,8 @@ class IndexLine extends React.Component {
         return (
             <tr>
                 <td>{ provider.name }</td>
-                <td>{ provider.cnpj }</td>
-                <td>{ provider.phone }</td>
+                <CnpjTd>{ provider.cnpj }</CnpjTd>
+                <PhoneTd>{ provider.phone }</PhoneTd>
                 <td>{ provider.email }</td>
                 <td className="text-right">
                     <Link to={ editUri } className="btn btn-sm btn-outline-secondary mr-2">Editar</Link>

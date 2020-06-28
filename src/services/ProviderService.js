@@ -1,5 +1,5 @@
 import Http from '../helpers/HttpHelper'
-import { cnpj, handleError, phone } from '../helpers/MethodsHelper'
+import { handleError } from '../helpers/MethodsHelper'
 
 const ProviderService = (() => {
     const _uris = {
@@ -14,10 +14,10 @@ const ProviderService = (() => {
         const data = await Http.get(_uris.list)
 
         return JSON.parse(data).map(provider => ({
-            phone: phone(provider.Telefone),
             name: provider.RazaoSocial,
-            cnpj: cnpj(provider.CNPJ),
+            phone: provider.Telefone,
             email: provider.Email,
+            cnpj: provider.CNPJ,
             id: provider.Id,
         }))
     }, [])
