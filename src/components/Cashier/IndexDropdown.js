@@ -11,6 +11,8 @@ class IndexDropdown extends React.Component {
 
     handleClose = event => {
         event.preventDefault()
+
+        this.setState({ open: false })
         this.props.onClose()
     }
 
