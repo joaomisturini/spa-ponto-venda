@@ -1,5 +1,5 @@
 import Http from '../helpers/HttpHelper'
-import { float, handleError, money, serialize } from '../helpers/MethodsHelper'
+import { float, handleError, serialize } from '../helpers/MethodsHelper'
 
 const CashierService = (() => {
     const _uris = {
@@ -18,8 +18,8 @@ const CashierService = (() => {
         const data = await Http.get(_uris.list)
 
         return JSON.parse(data).map(cashier => ({
-            balance: money(cashier.Saldo),
             open: cashier.Saldo > 0,
+            balance: cashier.Saldo,
             name: cashier.Nome,
             id: cashier.Id,
         }))

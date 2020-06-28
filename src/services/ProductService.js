@@ -1,5 +1,5 @@
 import Http from '../helpers/HttpHelper'
-import { float, handleError, money } from '../helpers/MethodsHelper'
+import { float, handleError } from '../helpers/MethodsHelper'
 
 const ProductService = (() => {
     const _uris = {
@@ -14,12 +14,12 @@ const ProductService = (() => {
         const data = await Http.get(_uris.list)
 
         return JSON.parse(data).map(product => ({
-            balance: money(product.Saldo),
-            price: money(product.Preco),
-            icms: money(product.ICMS),
-            ipi: money(product.IPI),
+            balance: product.Saldo,
+            price: product.Preco,
             name: product.Nome,
+            icms: product.ICMS,
             ean: product.EAN,
+            ipi: product.IPI,
             id: product.Id,
         }))
     }, [])

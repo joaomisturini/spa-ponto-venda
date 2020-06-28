@@ -1,11 +1,4 @@
 import Bus from './BusHelper'
-import numeral from 'numeral'
-
-numeral.register('locale', 'pt-BR', { delimiters: {
-    thousands: '.', decimal: ',',
-} })
-
-numeral.locale('pt-BR')
 
 export const cnpj = string => string.replace(
     /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/,
@@ -30,8 +23,6 @@ export const handleError = async (callback, errorData) => {
         return errorData
     }
 }
-
-export const money = number => numeral(number).format('0,0.00')
 
 export const phone = string => string.replace(
     /^(\d{2})(\d{4})(\d{4})/,
