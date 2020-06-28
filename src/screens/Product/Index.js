@@ -8,7 +8,6 @@ class ScreensProductIndex extends React.Component {
     state = {
         products: [],
         profile: 0,
-        filter: {},
     }
 
     componentDidMount = async () => {
@@ -17,12 +16,6 @@ class ScreensProductIndex extends React.Component {
 
         const products = await ProductService.list()
         this.setState({ products })
-    }
-
-    handleChange = (field, value) => {
-        this.setState(({ filter }) => ({
-            filter: Object.assign({}, filter, { [field]: value }),
-        }))
     }
 
     handleDestroy = async id => {
@@ -47,7 +40,6 @@ class ScreensProductIndex extends React.Component {
                     </div>
                 ) }
             </div>
-
             <IndexTable onDestroy={ this.handleDestroy } { ...this.state } />
         </>
     )
