@@ -20,9 +20,8 @@ class IndexLine extends React.Component {
 
         const taxColumns = this.props.profile < 2 && (
             <>
-                <td>{ product.ean }</td>
-                <MoneyTd prefix="R$ ">{ product.ipi }</MoneyTd>
-                <MoneyTd prefix="R$ ">{ product.icms }</MoneyTd>
+                <td>{ product.ncm }</td>
+                <td>{ product.unit }</td>
                 <td className="text-right">{ this._renderButtons(id) }</td>
             </>
         )
@@ -30,6 +29,7 @@ class IndexLine extends React.Component {
         return (
             <tr>
                 <td>{ product.name }</td>
+                <td>{ product.sku }</td>
                 <MoneyTd prefix="R$ ">{ product.price }</MoneyTd>
                 <MoneyTd>{ product.balance }</MoneyTd>
                 { taxColumns }

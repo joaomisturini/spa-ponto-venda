@@ -14,9 +14,8 @@ class IndexTable extends React.Component {
     render = () => {
         const taxColumns = this.props.profile < 2 && (
             <>
-                <th>EAN</th>
-                <th>IPI</th>
-                <th>ICMS</th>
+                <th>NCM</th>
+                <th>Unidade</th>
                 <th className="text-right">Ações</th>
             </>
         )
@@ -29,6 +28,7 @@ class IndexTable extends React.Component {
                     <thead>
                         <tr>
                             <th>Nome</th>
+                            <th>SKU</th>
                             <th>Preço</th>
                             <th>Saldo</th>
                             { taxColumns }

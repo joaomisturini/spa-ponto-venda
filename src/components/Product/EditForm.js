@@ -1,8 +1,20 @@
 import React from 'react'
 import Input from '../UI/Input'
+import Select from '../UI/Select'
 import SubmitButton from '../UI/SubmitButton'
 
 class EditForm extends React.Component {
+    options = [ {
+        text: 'Nacional',
+        value: 0,
+    }, {
+        text: 'Estrangeira - importação direta',
+        value: 1,
+    }, {
+        text: 'Estrangeira - adquirida no mercado interno',
+        value: 2,
+    } ]
+
     handleChange = (field, { target }) => {
         this.props.onChange(field, target.value)
     }
@@ -25,12 +37,23 @@ class EditForm extends React.Component {
                         required
                     />
                 </div>
+            </div>
+            <div className="form-row">
                 <div className="col-sm">
                     <Input type="text"
-                        onChange={ event => this.handleChange('ean', event) }
-                        value={ this.props.ean || '' }
+                        onChange={ event => this.handleChange('sku', event) }
+                        value={ this.props.sku || '' }
                         maxLength="13"
-                        label="EAN"
+                        label="SKU"
+                        required
+                    />
+                </div>
+                <div className="col-sm">
+                    <Input type="text"
+                        onChange={ event => this.handleChange('ncm', event) }
+                        value={ this.props.ncm || '' }
+                        maxLength="8"
+                        label="NCM"
                         required
                     />
                 </div>
@@ -48,32 +71,29 @@ class EditForm extends React.Component {
                 </div>
                 <div className="col-sm">
                     <Input type="number"
-                        onChange={ event => this.handleChange('ipi', event) }
-                        value={ this.props.ipi || '' }
-                        label="IPI"
+                        onChange={ event => this.handleChange('balance', event) }
+                        value={ this.props.balance || '' }
+                        label="Saldo"
                         step=".01"
                         required
-                        min="0"
                     />
                 </div>
             </div>
             <div className="form-row">
                 <div className="col-sm">
-                    <Input type="number"
-                        onChange={ event => this.handleChange('icms', event) }
-                        value={ this.props.icms || '' }
-                        label="ICMS"
-                        step=".01"
+                    <Input type="text"
+                        onChange={ event => this.handleChange('unit', event) }
+                        value={ this.props.unit || '' }
+                        label="Unidade"
+                        maxLength="2"
                         required
-                        min="0"
                     />
                 </div>
                 <div className="col-sm">
-                    <Input type="number"
-                        onChange={ event => this.handleChange('balance', event) }
-                        value={ this.props.balance || '' }
-                        label="Saldo"
-                        step=".01"
+                    <Select options={ this.options }
+                        onChange={ event => this.handleChange('origin', event) }
+                        value={ this.props.origin || 0 }
+                        label="Origem"
                         required
                     />
                 </div>

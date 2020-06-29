@@ -15,11 +15,12 @@ const ProductService = (() => {
 
         return JSON.parse(data).map(product => ({
             balance: product.Saldo,
+            origin: product.Origem,
+            unit: product.Unidade,
             price: product.Preco,
             name: product.Nome,
-            icms: product.ICMS,
-            ean: product.EAN,
-            ipi: product.IPI,
+            ncm: product.NCM,
+            sku: product.SKU,
             id: product.Id,
         }))
     }, [])
@@ -28,10 +29,11 @@ const ProductService = (() => {
         await Http.post(_uris.create, {
             Saldo: float(body.balance),
             Preco: float(body.price),
-            ICMS: float(body.icms),
-            IPI: float(body.ipi),
+            Origem: body.origin,
+            Unidade: body.unit,
             Nome: body.name,
-            EAN: body.ean,
+            NCM: body.ncm,
+            SKU: body.sku,
         })
 
         return true
@@ -44,11 +46,12 @@ const ProductService = (() => {
 
         return {
             balance: product.Saldo,
+            origin: product.Origem,
+            unit: product.Unidade,
             price: product.Preco,
-            icms: product.ICMS,
             name: product.Nome,
-            ean: product.EAN,
-            ipi: product.IPI,
+            ncm: product.NCM,
+            sku: product.SKU,
             id: product.Id,
         }
     }, {})
@@ -57,10 +60,11 @@ const ProductService = (() => {
         await Http.put(_uris.update + id, {
             Saldo: float(body.balance),
             Preco: float(body.price),
-            ICMS: float(body.icms),
-            IPI: float(body.ipi),
+            Origem: body.origin,
+            Unidade: body.unit,
             Nome: body.name,
-            EAN: body.ean,
+            NCM: body.ncm,
+            SKU: body.sku,
         })
 
         return true
