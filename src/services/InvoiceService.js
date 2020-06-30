@@ -64,10 +64,10 @@ const InvoiceService = (() => {
 
     const createItem = async (id, body) => await handleError(async () => {
         const invoice = await Http.post(_uris.createItem.replace('_id_', id), {
-            Produto: { Id: body.product_id },
-            ValorImpostos: body.taxPrice,
-            Quantidade: body.quantity,
-            Preco: body.price,
+            ValorImpostos: float(body.taxPrice),
+            Quantidade: float(body.quantity),
+            Produto: { Id: body.productId },
+            Preco: float(body.price),
         })
 
         return _mapInvoice(JSON.parse(invoice))
