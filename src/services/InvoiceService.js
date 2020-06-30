@@ -20,8 +20,6 @@ const InvoiceService = (() => {
     }, [])
 
     const create = async body => await handleError(async () => {
-        console.log(date(body.issueDate))
-
         const invoice = await Http.post(_uris.create, {
             ValorSeguro: float(body.insurancePrice),
             ValorFrete: float(body.freightPrice),
