@@ -85,7 +85,7 @@ class EditForm extends React.Component {
                         onChange={ event => this.handleChange('unit', event) }
                         value={ this.props.unit || '' }
                         label="Unidade"
-                        maxLength="2"
+                        maxLength="3"
                         required
                     />
                 </div>
