@@ -11,8 +11,12 @@ import ScreensCashierOpen from './screens/Cashier/Open'
 import ScreensProductEdit from './screens/Product/Edit'
 import ScreensUserRegister from './screens/User/Register'
 import ScreensCashierIndex from './screens/Cashier/Index'
+import ScreensInvoiceIndex from './screens/Invoice/Index'
+import ScreensInvoiceItems from './screens/Invoice/Items'
 import ScreensProductIndex from './screens/Product/Index'
 import ScreensProviderEdit from './screens/Provider/Edit'
+import ScreensInvoiceCreate from './screens/Invoice/Create'
+import ScreensInvoicePrices from './screens/Invoice/Prices'
 import ScreensProviderIndex from './screens/Provider/Index'
 import ScreensDashboard from './screens/Dashboard/Dashboard'
 import ScreensCashierTransact from './screens/Cashier/Transact'
@@ -29,7 +33,10 @@ const App = () => (
             <AuthRoute path="/produtos/editar/:id" render={ props => WithAuth(ScreensProductEdit, props) } />
             <AuthRoute path="/produtos/criar" render={ props => WithAuth(ScreensProductEdit, props) } />
             <AuthRoute path="/produtos" render={ props => WithAuth(ScreensProductIndex, props) } />
-            <AuthRoute path="/compras" render={ props => WithAuth(ScreensDashboard, props) } />
+            <AuthRoute path="/compras/precos/:id" render={ props => WithAuth(ScreensInvoicePrices, props) } />
+            <AuthRoute path="/compras/itens/:id" render={ props => WithAuth(ScreensInvoiceItems, props) } />
+            <AuthRoute path="/compras/criar" render={ props => WithAuth(ScreensInvoiceCreate, props) } />
+            <AuthRoute path="/compras" render={ props => WithAuth(ScreensInvoiceIndex, props) } />
             <AuthRoute path="/caixas/depositar/:id" render={ props => WithAuth(ScreensCashierTransact, props) } />
             <AuthRoute path="/caixas/sacar/:id" render={ props => WithAuth(ScreensCashierTransact, props) } />
             <AuthRoute path="/caixas/editar/:id" render={ props => WithAuth(ScreensCashierEdit, props) } />

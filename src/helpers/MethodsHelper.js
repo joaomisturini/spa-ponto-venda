@@ -1,4 +1,7 @@
+import moment from 'moment'
 import Bus from './BusHelper'
+
+export const date = string => moment(string, 'DD/MM/YYYY - hh:mm:ss').format()
 
 export const float = string => string.toString()
     .replace(/[,]/g, '.').replace(/[.](?=.*[.])/g, '')
