@@ -20,6 +20,7 @@ import ScreensInvoicePrices from './screens/Invoice/Prices'
 import ScreensProviderIndex from './screens/Provider/Index'
 import ScreensDashboard from './screens/Dashboard/Dashboard'
 import ScreensCashierTransact from './screens/Cashier/Transact'
+import ScreensInvoiceCreateItem from './screens/Invoice/CreateItem'
 
 const App = () => (
     <BrowserRouter>
@@ -34,6 +35,7 @@ const App = () => (
             <AuthRoute path="/produtos/criar" render={ props => WithAuth(ScreensProductEdit, props) } />
             <AuthRoute path="/produtos" render={ props => WithAuth(ScreensProductIndex, props) } />
             <AuthRoute path="/compras/precos/:id" render={ props => WithAuth(ScreensInvoicePrices, props) } />
+            <AuthRoute path="/compras/itens/:id/criar" render={ props => WithAuth(ScreensInvoiceCreateItem, props) } />
             <AuthRoute path="/compras/itens/:id" render={ props => WithAuth(ScreensInvoiceItems, props) } />
             <AuthRoute path="/compras/criar" render={ props => WithAuth(ScreensInvoiceCreate, props) } />
             <AuthRoute path="/compras" render={ props => WithAuth(ScreensInvoiceIndex, props) } />
