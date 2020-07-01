@@ -41,20 +41,19 @@ const InvoiceService = (() => {
     }, {})
 
     const prices = async (id, body) => await handleError(async () => {
-        const uri = _uris.prices.replace('_id_', id)
-        const invoice = await Http.post(uri + '?' + serialize({
+        await Http.post(_uris.prices.replace('_id_', id) + '?' + serialize({
             ValorSeguro: float(body.insurancePrice),
             ValorFrete: float(body.freightPrice),
         }))
 
-        return _mapInvoice(JSON.parse(invoice))
-    }, {})
+        return true
+    }, false)
 
     const close = async id => await handleError(async () => {
-        const invoice = await Http.post(_uris.close.replace('_id_', id))
+        await Http.post(_uris.close.replace('_id_', id))
 
-        return _mapInvoice(JSON.parse(invoice))
-    })
+        return true
+    }, false)
 
     const destroy = async id => await handleError(async () => {
         await Http.del(_uris.destroy + id)
@@ -63,22 +62,21 @@ const InvoiceService = (() => {
     }, false)
 
     const createItem = async (id, body) => await handleError(async () => {
-        const invoice = await Http.post(_uris.createItem.replace('_id_', id), {
+        await Http.post(_uris.createItem.replace('_id_', id), {
             ValorImpostos: float(body.taxPrice),
             Quantidade: float(body.quantity),
             Produto: { Id: body.productId },
             Preco: float(body.price),
         })
 
-        return _mapInvoice(JSON.parse(invoice))
-    }, {})
+        return true
+    }, false)
 
     const destroyItem = async (id, itemId) => await handleError(async () => {
-        const uri = _uris.destroyItem.replace('_id_', id)
-        const invoice = await Http.del(uri + itemId)
+        await Http.del(_uris.destroyItem.replace('_id_', id) + itemId)
 
-        return _mapInvoice(JSON.parse(invoice))
-    }, {})
+        return true
+    }, false)
 
     const _mapInvoice = ({
         Fornecedor: provider,

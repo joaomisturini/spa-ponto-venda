@@ -26,14 +26,13 @@ class ScreensInvoicePrices extends React.Component {
     handleSave = async () => {
         this.setState({ pending: true })
 
+        const { id } = this.props.match.params
         const { freightPrice, insurancePrice } = this.state.invoice
 
-        const { id } = await InvoiceService.prices(
-            this.props.match.params.id,
-            { freightPrice, insurancePrice }
-        )
+        const saved = await InvoiceService.prices(id, {
+            freightPrice, insurancePrice,
+        })
 
-        const saved = id !== undefined
         this.setState({ saved, pending: false })
     }
 

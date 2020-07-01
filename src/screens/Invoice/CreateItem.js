@@ -8,6 +8,7 @@ class ScreensInvoiceCreateItem extends React.Component {
     state = {
         pending: false,
         products: [],
+        saved: false,
         invoice: {},
         item: {},
     }
@@ -42,22 +43,17 @@ class ScreensInvoiceCreateItem extends React.Component {
     handleSave = async () => {
         this.setState({ pending: true })
 
-        const { id } = await InvoiceService.createItem(
-            this.props.match.params.id,
-            this.state.item
-        )
+        const { id } = this.props.match.params
 
-        this.setState(({ item }) => ({
-            item: Object.assign({}, item, { id }),
-            pending: false,
-        }))
+        const saved = await InvoiceService.createItem(id, this.state.item)
+        this.setState({ saved, pending: false })
     }
 
     render = () => {
         const { id } = this.props.match.params
         const { number, series } = this.state.invoice
 
-        if (this.state.item.id) {
+        if (this.state.saved) {
             return <Redirect to={ `/compras/itens/${ id }` } />
         }
 

@@ -39,7 +39,7 @@ class ScreensInvoiceCreate extends React.Component {
 
     render = () => {
         if (this.state.invoice.id) {
-            return <Redirect to={ `/compras/itens/${ this.state.invoice.id }` } />
+            return <Redirect to={ `/compras/itens/${ this.state.invoice.id }/criar` } />
         }
 
         return (

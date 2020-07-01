@@ -17,18 +17,16 @@ class ScreensInvoiceItems extends React.Component {
     }
 
     handleDestroy = async itemId => {
-        const { id } = await InvoiceService.destroyItem(
-            this.props.match.params.id,
-            itemId
-        )
+        const { id } = this.props.match.params
+        const destroyed = await InvoiceService.destroyItem(id, itemId)
 
-        if (id !== undefined) {
+        if (destroyed) {
             this.setState(({ items }) => ({
                 items: items.filter(item => item.id !== itemId),
             }))
         }
 
-        return true
+        return destroyed
     }
 
     render = () => {
