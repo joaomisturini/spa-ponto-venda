@@ -75,7 +75,7 @@ const InvoiceService = (() => {
 
     const destroyItem = async (id, itemId) => await handleError(async () => {
         const uri = _uris.destroyItem.replace('_id_', id)
-        const invoice = await Http.post(uri + itemId)
+        const invoice = await Http.del(uri + itemId)
 
         return _mapInvoice(JSON.parse(invoice))
     }, {})
