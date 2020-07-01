@@ -36,8 +36,8 @@ class ScreensCashierIndex extends React.Component {
         if (closed) {
             this.setState(({ cashiers }) => {
                 const index = cashiers.findIndex(cashier => cashier.id === id)
-                cashiers[index].balance = '0,00'
                 cashiers[index].open = false
+                cashiers[index].balance = 0
 
                 return { cashiers }
             })
