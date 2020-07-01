@@ -19,7 +19,11 @@ class IndexTable extends React.Component {
     )
 
     _renderLines = () => this.props.invoices.map(invoice => (
-        <IndexLine key={ invoice.id } invoice={ invoice } onDestroy={ this.props.onDestroy } />
+        <IndexLine key={ invoice.id }
+            onDestroy={ this.props.onDestroy }
+            onClose={ this.props.onClose }
+            invoice={ invoice }
+        />
     ))
 }
 

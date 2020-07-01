@@ -23,6 +23,21 @@ class ScreensInvoiceIndex extends React.Component {
         return destroyed
     }
 
+    handleClose = async id => {
+        const closed = await InvoiceService.close(id)
+
+        if (closed) {
+            this.setState(({ invoices }) => {
+                const index = invoices.findIndex(invoice => invoice.id === id)
+                invoices[index].open = false
+
+                return { invoices }
+            })
+        }
+
+        return closed
+    }
+
     render = () => (
         <>
             <div className="row mb-2">
@@ -31,7 +46,7 @@ class ScreensInvoiceIndex extends React.Component {
                     <Link to="/compras/criar" className="btn btn-outline-primary">Nova compra</Link>
                 </div>
             </div>
-            <IndexTable onDestroy={ this.handleDestroy } { ...this.state } />
+            <IndexTable onDestroy={ this.handleDestroy } onClose={ this.handleClose } { ...this.state } />
         </>
     )
 }

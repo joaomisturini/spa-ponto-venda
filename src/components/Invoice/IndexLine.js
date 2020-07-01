@@ -3,6 +3,7 @@ import DateTd from '../UI/DateTd'
 import MoneyTd from '../UI/MoneyTd'
 import { Link } from 'react-router-dom'
 import DestroyButton from '../UI/DestroyButton'
+import PrimaryButton from '../UI/PrimaryButton'
 
 class IndexLine extends React.Component {
     state = { pending: false }
@@ -14,6 +15,13 @@ class IndexLine extends React.Component {
         if (! destroyed) {
             this.setState({ pending: false })
         }
+    }
+
+    handleClose = async id => {
+        this.setState({ pending: true })
+
+        await this.props.onClose(id)
+        this.setState({ pending: false })
     }
 
     render = () => {
@@ -44,7 +52,10 @@ class IndexLine extends React.Component {
 
         const editButtons = open && (
             <>
-                <Link to={ itemsUri } className="btn btn-sm btn-outline-secondary mr-2">Ver itens</Link>
+                <PrimaryButton pending={ this.state.pending } onClick={ () => this.handleClose(id) }>
+                    Lançar compra
+                </PrimaryButton>
+                <Link to={ itemsUri } className="btn btn-sm btn-outline-secondary ml-2 mr-2">Ver itens</Link>
                 <Link to={ pricesUri } className="btn btn-sm btn-outline-secondary mr-2">Editar valores</Link>
             </>
         )
